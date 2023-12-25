@@ -22,5 +22,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://s1-w5x5.onrender.com"
+  "proxy": "https://s1-w5x5.onrender.com:5000"
 }
