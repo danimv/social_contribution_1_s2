@@ -1,4 +1,5 @@
 import axios from "axios";
+import api from './api';
 
 import {
   GET_PROFILE,
@@ -12,7 +13,7 @@ import {
 // get current profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
-  axios
+  api.api
     .get("./api/profile")
     .then(res => {
       console.log("Response data:", res.data); 
@@ -31,7 +32,7 @@ export const getCurrentProfile = () => dispatch => {
 
 // create profile
 export const createProfile = (profileData, history) => dispatch => {
-  axios
+  api.api
     .post("/api/profile", profileData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
@@ -58,7 +59,7 @@ export const clearCurrentProfile = () => {
 
 // add experience
 export const addExperience = (expData, history) => dispatch => {
-  axios
+  api.api
     .post("/api/profile/experience", expData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
@@ -71,7 +72,7 @@ export const addExperience = (expData, history) => dispatch => {
 
 // add education
 export const addEducation = (eduData, history) => dispatch => {
-  axios
+  api.api
     .post("/api/profile/education", eduData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
@@ -84,7 +85,7 @@ export const addEducation = (eduData, history) => dispatch => {
 
 //delete experience
 export const deleteExperience = id => dispatch => {
-  axios
+  api.api
     .delete(`/api/profile/experience/${id}`)
     .then(res =>
       dispatch({
@@ -102,7 +103,7 @@ export const deleteExperience = id => dispatch => {
 
 //delete education
 export const deleteEducation = id => dispatch => {
-  axios
+  api.api
     .delete(`/api/profile/education/${id}`)
     .then(res =>
       dispatch({
@@ -121,7 +122,7 @@ export const deleteEducation = id => dispatch => {
 // delete account and profile
 export const deleteAccount = () => dispatch => {
   if (window.confirm("Are you sure? This can not be undone.")) {
-    axios
+    api.api
       .delete("/api/profile")
       .then(res =>
         dispatch({
@@ -141,7 +142,7 @@ export const deleteAccount = () => dispatch => {
 // get all profiles
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
-  axios
+  api.api
     .get("/api/profile/all")
     .then(res =>
       dispatch({
@@ -160,7 +161,7 @@ export const getProfiles = () => dispatch => {
 // get profile by handle
 export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
-  axios
+  api.api
     .get(`/api/profile/handle/${handle}`)
     .then(res =>
       dispatch({
