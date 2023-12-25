@@ -13,7 +13,7 @@ import {
 // add post
 export const addPost = postData => dispatch => {
   dispatch(clearErrors());
-  api.api
+  api
     .post("api/posts", postData)
     .then(res =>
       dispatch({
@@ -32,7 +32,7 @@ export const addPost = postData => dispatch => {
 // get post
 export const getPost = id => dispatch => {
   dispatch(setPostLoading());
-  api.api
+  api
     .get(`/api/posts/${id}`)
     .then(res =>
       dispatch({
@@ -51,7 +51,7 @@ export const getPost = id => dispatch => {
 // get posts
 export const getPosts = () => dispatch => {
   dispatch(setPostLoading());
-  api.api
+  api
     .get("api/posts/")
     .then(res =>
       dispatch({
@@ -69,7 +69,7 @@ export const getPosts = () => dispatch => {
 
 // delete post
 export const deletePost = id => dispatch => {
-  api.api
+  api
     .delete(`api/posts/${id}`)
     .then(res =>
       dispatch({
@@ -87,7 +87,7 @@ export const deletePost = id => dispatch => {
 
 // like post
 export const addLike = id => dispatch => {
-  api.api
+  api
     .post(`api/posts/like/${id}`)
     .then(res => dispatch(getPosts()))
     .catch(err =>
@@ -100,7 +100,7 @@ export const addLike = id => dispatch => {
 
 // unlike post
 export const removeLike = id => dispatch => {
-  api.api
+  api
     .post(`api/posts/unlike/${id}`)
     .then(res => dispatch(getPosts()))
     .catch(err =>
@@ -114,7 +114,7 @@ export const removeLike = id => dispatch => {
 // add comment
 export const addComment = (postId, commentData) => dispatch => {
   dispatch(clearErrors());
-  api.api
+  api
     .post(`/api/posts/comment/${postId}`, commentData)
     .then(res =>
       dispatch({
@@ -132,7 +132,7 @@ export const addComment = (postId, commentData) => dispatch => {
 
 // delete comment
 export const deleteComment = (postId, commentId) => dispatch => {
-  api.api
+  api
     .delete(`/api/posts/comment/${postId}/${commentId}`)
     .then(res =>
       dispatch({

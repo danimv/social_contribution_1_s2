@@ -7,7 +7,7 @@ import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
-  api.api
+  api
     .post("/api/users/register", userData)
     .then(res => history.push("/login"))
     .catch(err =>
@@ -20,7 +20,7 @@ export const registerUser = (userData, history) => dispatch => {
 
 // Login - get user token
 export const loginUser = userData => dispatch => {
-  api.api
+  api
     .post("/api/users/login", userData)
     .then(res => {
       // save to localStorage
