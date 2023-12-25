@@ -31,7 +31,7 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import "./App.css";
 
 // check for token
-if (localStorage.jwtToken !=='Bearer undefined') {
+if (localStorage.jwtToken) {
   // set auth token header auth
   setAuthToken(localStorage.jwtToken);
 
