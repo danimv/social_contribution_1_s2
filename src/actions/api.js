@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'https://s1-w5x5.onrender.com';//process.env.BACKEND_URL;
+const url = 'http://192.168.1.23:5000';//'https://s1-w5x5.onrender.com';//'http://192.168.1.23:5000';//
 const api = axios.create({
   baseURL: url,
   withCredentials: true,
