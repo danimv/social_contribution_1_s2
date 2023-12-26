@@ -12,15 +12,17 @@ import ProfileAbout from "./ProfileAbout";
 
 class Profile extends Component {
   componentDidMount() {
-    if (this.props.match.params.handle) {
-      this.props.getProfileByHandle(this.props.match.params.handle);
+    if (this.props.match.params.id) {
+      this.props.getProfileByHandle(this.props.match.params.id);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.profile.profile === null && this.props.profile.loading) {
-      this.props.history.push("/not-found");
-    }
+    const { profile, loading } = nextProps.profile;
+
+  if (profile === null && loading) {
+    this.props.history.push("/not-found");
+  }
   }
   render() {
     const { profile, loading } = this.props.profile;
@@ -41,10 +43,10 @@ class Profile extends Component {
           </div>
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
-          <ProfileCreds
+          {/* <ProfileCreds
             experience={profile.experience}
             education={profile.education}
-          />
+          /> */}
           {profile.githubusername ? (
             <ProfileGithub username={profile.githubusername} />
           ) : null}

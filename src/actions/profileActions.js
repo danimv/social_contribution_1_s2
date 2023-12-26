@@ -32,8 +32,8 @@ export const getCurrentProfile = () => (dispatch) => {
 
 // create profile
 export const createProfile = (profileData, history) => (dispatch) => {
-  const t = localStorage.getItem("jwtToken");
-  setAuthToken(t);
+  const t = localStorage.getItem('jwtToken');
+  // setAuthToken(t);
   api
     .post('/api/profile', profileData)
     .then((res) => {
@@ -149,12 +149,13 @@ export const getProfiles = () => (dispatch) => {
   dispatch(setProfileLoading());
   api
     .get('/api/profile/all')
-    .then((res) =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: res.data,
-      })
-    )
+    .then((res) => {
+      console.log(res.data);
+        dispatch({
+          type: GET_PROFILES,
+          payload: res.data,
+        });
+    })
     .catch((err) =>
       dispatch({
         type: GET_PROFILES,
@@ -164,10 +165,10 @@ export const getProfiles = () => (dispatch) => {
 };
 
 // get profile by handle
-export const getProfileByHandle = (handle) => (dispatch) => {
+export const getProfileByHandle = (id) => (dispatch) => {
   dispatch(setProfileLoading());
   api
-    .get(`/api/profile/handle/${handle}`)
+    .get(`/api/profile/id/${id}`)
     .then((res) =>
       dispatch({
         type: GET_PROFILE,

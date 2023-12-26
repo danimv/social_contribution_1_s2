@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import Spinner from "../common/Spinner";
-import ProfileItems from "./ProfileItems";
-import { getProfiles } from "../../actions/profileActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Spinner from '../common/Spinner';
+import ProfileItems from './ProfileItems';
+import { getProfiles } from '../../actions/profileActions';
 
 class Profiles extends Component {
   componentDidMount() {
@@ -17,23 +17,18 @@ class Profiles extends Component {
       profileItems = <Spinner />;
     } else {
       if (profiles.length > 0) {
-        profileItems = profiles.map(profile => (
-          <ProfileItems key={profile.id} profile={profile} />
-        ));
+        profileItems = profiles.map((profile) => <ProfileItems key={profile.id} profile={profile} />);
       } else {
-        profileItems = <h4>No profiles found</h4>;
+        profileItems = <h4>No hi ha usuaris</h4>;
       }
     }
     return (
       <div className="profiles">
         <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h1 className="display-4 text-center">Developer Profiles</h1>
-              <p className="lead text-center">Meet and connect!</p>
-              {profileItems}
-            </div>
+          <div className="mb-4">
+            <h1 className="text-center">Usuaris</h1>
           </div>
+          <div className="row row-cols-md-4 g-5">{profileItems}</div>
         </div>
       </div>
     );
@@ -42,13 +37,10 @@ class Profiles extends Component {
 
 Profiles.propTypes = {
   getProfiles: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
-  profile: state.profile
+const mapStateToProps = (state) => ({
+  profile: state.profile,
 });
 
-export default connect(
-  mapStateToProps,
-  { getProfiles }
-)(Profiles);
+export default connect(mapStateToProps, { getProfiles })(Profiles);

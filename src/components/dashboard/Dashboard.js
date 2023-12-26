@@ -7,7 +7,6 @@ import ProfileActions from './ProfileActions';
 import Experience from './Experience';
 import Education from './Education';
 
-
 import Spinner from '../common/Spinner';
 
 class Dashboard extends Component {
@@ -32,15 +31,13 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted">
               Hola{'    '}
-              <Link to={`/profile/${profile.handle}`} style={{ fontWeight: 'bold', fontSize: 22 }}>
-                {user.name}
-              </Link>
+              {user.name}
             </p>
 
             <ProfileActions />
 
-            <Experience experience={profile.experience} />
-            <Education education={profile.education} />
+            {/* <Experience experience={profile.experience} />
+            <Education education={profile.education} /> */}
 
             <div style={{ marginBottom: '60px' }} />
             <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">

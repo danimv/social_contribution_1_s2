@@ -2,32 +2,44 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import Posts from '../posts/Posts';
+import PostFeed from "../posts/PostFeed";
+import { getPosts } from "../../actions/postActions";
+import Spinner from "../common/Spinner";
 
 class Landing extends Component {
   componentDidMount() {
+    this.props.getPosts();
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
     }
   }
   render() {
+    const { posts, loading } = this.props.post;
+    let postContent;
+
+    if (posts === null || loading) {
+      postContent = <Spinner />;
+    } else {
+      postContent = <PostFeed posts={posts} />;
+    }
     return (
       <div className="landing">
-        <div className="dark-overlay landing-inner text-light">
+        <div className="">
           <div className="container">
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Global Regeneration ∞</h1>
+            <div className="row mb-5">
+              <div className="col-md-12 text-center mt-3">
+                <h1 className="display-3 mb-4" style={{ color: '#17A2B8' }}>Global Regeneration ∞</h1>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info me-2">
                   Registra't
                 </Link>
                 <Link to="/login" className="btn btn-lg btn-light ms-2">
                   Entra
-                </Link>
-              </div>
-              <div className="col-md-12">{Posts}</div>
+                </Link>                
+              </div>             
             </div>
+            <div className="row row-cols-md-3 g-5">
+              {postContent}</div>
           </div>
         </div>
       </div>
@@ -37,10 +49,13 @@ class Landing extends Component {
 
 Landing.propTypes = {
   auth: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  post: state.post
 });
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps, { getPosts })(Landing);

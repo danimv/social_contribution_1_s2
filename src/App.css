@@ -3,17 +3,23 @@ img {
 }
 
 .landing {
+  background-color: rgb(249, 249, 249);
   position: relative;
-  background: url("./img/landscape.jpg") no-repeat;
+  /* background: url("./img/landscape.jpg") no-repeat; */
   background-size: cover;
-  background-position: center;
+  background-position: center; 
   height: 100vh;
   margin-top: -24px;
   margin-bottom: -50px;
+  /* opacity: 0.4;    */
+}
+
+#userPost{
+  background-color:#96d4d0;
 }
 
 .landing-inner {
-  padding-top: 80px;
+  padding-top: 40px;
 }
 
 .dark-overlay {

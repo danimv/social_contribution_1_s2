@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import isEmpty from "../../validation/is-empty";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import isEmpty from '../../validation/is-empty';
 
 class ProfileItems extends Component {
   render() {
     const { profile } = this.props;
     return (
-      <div className="card card-body bg-light mb-3">
-        <div className="row">
-          <div className="col-2">
+      <div className="col">
+        <div className="card card-body bg-light mb-3">
+          <div className="col-md-12">
             {isEmpty(profile.imgUrl) ? (
               <img
                 className="rounded-circle"
@@ -23,30 +23,12 @@ class ProfileItems extends Component {
           <div className="col-lg-6 col-md-4 col-8">
             <h3>{profile.user.name}</h3>
             <p>
-              {profile.status}{" "}
-              {isEmpty(profile.company) ? null : (
-                <span>at {profile.company}</span>
-              )}
+             {profile._id}
             </p>
-            <p>
-              {isEmpty(profile.location) ? null : (
-                <span>{profile.location}</span>
-              )}
-            </p>
-            <Link to={`/profile/${profile.handle}`} className="btn btn-info">
-              View Profile
+            <p>{isEmpty(profile.provincia) ? null : <span>{profile.provincia}</span>}</p>
+            <Link to={`/profile/${profile._id}`} className="btn btn-info">
+              Veure perfil
             </Link>
-          </div>
-          <div className="col-md-4 d-none d-md-block">
-            <h4>Skills</h4>
-            <ul className="list-group">
-              {profile.skills.slice(0, 4).map((skill, index) => (
-                <li key={index} className="list-group-item">
-                  <i className="fa fa-check pr-1" />
-                  {skill}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>
@@ -55,7 +37,7 @@ class ProfileItems extends Component {
 }
 
 ProfileItems.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
 export default ProfileItems;
