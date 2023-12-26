@@ -1,5 +1,5 @@
 import axios from "axios";
-import api from './api';
+import {api} from './api';
 import {
   ADD_POST,
   GET_ERRORS,

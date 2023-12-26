@@ -1,14 +1,20 @@
 import axios from "axios";
-import api from './api';
-import setAuthToken from "../utils/setAuthToken";
+import { api, setAuthToken } from './api';
+// import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
+  const token = 'your_actual_token_value';
   api
-    .post("/api/users/register", userData)
+    .post("/api/users/register", userData, {
+      headers: {
+        'Authorization': 'Bearer ${token}',
+        'Content-Type': 'application/json'
+      }
+    })
     .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
@@ -48,7 +54,7 @@ export const loginUser = userData => dispatch => {
 };
 
 // set logged in user
-export const setCurrentUser = decoded => {
+export const setCurrentUser = decoded => {  
   return {
     type: SET_CURRENT_USER,
     payload: decoded

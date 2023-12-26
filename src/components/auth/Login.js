@@ -47,38 +47,47 @@ class Login extends Component {
 
     return (
       <div className="login">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">
-                Sign in to your CodeBook account
-              </p>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 m-auto">
+            <h1 className="display-4 text-center">Entra</h1>
+            <p className="lead text-center">Accedeix a la teva compte</p>
+            <form onSubmit={this.onSubmit}>
+              <div className="mb-3">
+                <input
                   type="email"
+                  className={`form-control form-control-lg ${errors.email ? 'is-invalid' : ''}`}
+                  placeholder="Correu electrònic"
+                  name="email"
                   value={this.state.email}
                   onChange={this.onChange}
-                  error={errors.email}
                 />
-
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
+                {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+              </div>
+    
+              <div className="mb-3">
+                <input
                   type="password"
+                  className={`form-control form-control-lg ${errors.password ? 'is-invalid' : ''}`}
+                  placeholder="Contrasenya"
+                  name="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                  error={errors.password}
                 />
-
-                <input type="submit" className="btn btn-info btn-block mt-4" />
-              </form>
-            </div>
+                {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+              </div>
+    
+              <div className="text-center">
+                  <button type="submit" className="btn btn-info btn-lg btn-block mt-4">
+                    Entrar
+                  </button>
+                </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
+    
     );
   }
 }

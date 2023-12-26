@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import TextFieldGroup from "../common/TextFieldGroup";
+import TextFieldGroup from '../common/TextFieldGroup';
 
-import { connect } from "react-redux";
-import { registerUser } from "../../actions/authActions";
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
-      errors: {}
+      name: '',
+      email: '',
+      password: '',
+      password2: '',
+      errors: {},
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -24,7 +24,7 @@ class Register extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push('/dashboard');
     }
   }
 
@@ -43,7 +43,7 @@ class Register extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -56,43 +56,58 @@ class Register extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your CodeBook account</p>
+              <h1 className="display-4 text-center">Registra't</h1>
+              <p className="lead text-center">Crea una compte al GR8</p>
               <form noValidate onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Name"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.onChange}
-                  error={errors.name}
-                />
-
-                <TextFieldGroup
-                  placeholder="Email"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                />
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  error={errors.password}
-                />
-
-                <TextFieldGroup
-                  placeholder="Confirm Password"
-                  name="password2"
-                  type="password"
-                  value={this.state.password2}
-                  onChange={this.onChange}
-                  error={errors.password2}
-                />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className={`form-control form-control-lg ${errors.name ? 'is-invalid' : ''}`}
+                    placeholder="Nom"
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.onChange}
+                  />
+                  {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="email"
+                    className={`form-control form-control-lg ${errors.email ? 'is-invalid' : ''}`}
+                    placeholder="Correu electrònic"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                  />
+                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="password"
+                    className={`form-control form-control-lg ${errors.password ? 'is-invalid' : ''}`}
+                    placeholder="Contrasenya"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                  />
+                  {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="password"
+                    className={`form-control form-control-lg ${errors.password2 ? 'is-invalid' : ''}`}
+                    placeholder="Repeteix la contrasenya"
+                    name="password2"
+                    value={this.state.password2}
+                    onChange={this.onChange}
+                  />
+                  {errors.password2 && <div className="invalid-feedback">{errors.password2}</div>}
+                </div>
+                <div className="text-center">
+                  <button type="submit" className="btn btn-info btn-lg btn-block mt-4">
+                    Registrar
+                  </button>
+                </div>
               </form>
             </div>
           </div>
@@ -103,14 +118,11 @@ class Register extends Component {
 }
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { registerUser }
-)(withRouter(Register));
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
