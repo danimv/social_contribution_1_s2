@@ -8,14 +8,14 @@ img {
   /* background: url("./img/landscape.jpg") no-repeat; */
   background-size: cover;
   background-position: center; 
-  height: 100vh;
+  height: 100%;
   margin-top: -24px;
-  margin-bottom: -50px;
+  padding-bottom: 10px;
   /* opacity: 0.4;    */
 }
 
 #userPost{
-  background-color:#96d4d0;
+  background-color:#b6b6a7;
 }
 
 .landing-inner {

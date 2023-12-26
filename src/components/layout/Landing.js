@@ -24,25 +24,27 @@ class Landing extends Component {
     }
     return (
       <div className="landing">
-        <div className="">
-          <div className="container">
-            <div className="row mb-5">
-              <div className="col-md-12 text-center mt-3">
-                <h1 className="display-3 mb-4" style={{ color: '#17A2B8' }}>Global Regeneration ∞</h1>
-                <hr />
-                <Link to="/register" className="btn btn-lg btn-info me-2">
-                  Registra't
-                </Link>
-                <Link to="/login" className="btn btn-lg btn-light ms-2">
-                  Entra
-                </Link>                
-              </div>             
-            </div>
-            <div className="row row-cols-md-3 g-5">
-              {postContent}</div>
-          </div>
-        </div>
+  <div className="">
+    <div className="container">
+      <div className="row mb-5">
+        <div className="col-md-12 text-center mt-3">
+          <h1 className="display-3 mb-4" style={{ color: '#17A2B8' }}>Global Regeneration ∞</h1>
+          <hr />
+          <Link to="/register" className="btn btn-lg btn-info me-2">
+            Registra't
+          </Link>
+          <Link to="/login" className="btn btn-lg btn-light ms-2">
+            Entra
+          </Link>                
+        </div>             
       </div>
+      <div className="row row-cols-md-4 g-3">
+        {postContent}
+      </div>
+    </div>
+  </div>
+</div>
+
     );
   }
 }
