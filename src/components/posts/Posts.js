@@ -1,16 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import PostForm from "./PostForm";
-import PostFeed from "./PostFeed";
+import PostForm from './PostForm';
+import PostFeed from './PostFeed';
 
-import Spinner from "../common/Spinner";
+import Spinner from '../common/Spinner';
 
-import { getPosts } from "../../actions/postActions";
+import { getPosts } from '../../actions/postActions';
 
-import POST_LOADING from "../../actions/types";
-
+import POST_LOADING from '../../actions/types';
 
 class Posts extends Component {
   componentDidMount() {
@@ -31,7 +30,7 @@ class Posts extends Component {
           <div className="row">
             <div className="col-md-12">
               <PostForm />
-              {postContent}
+              <div className="row row-cols-md-4 g-3 mt-2">{postContent}</div>
             </div>
           </div>
         </div>
@@ -41,12 +40,9 @@ class Posts extends Component {
 }
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
-  post: state.post
+const mapStateToProps = (state) => ({
+  post: state.post,
 });
-export default connect(
-  mapStateToProps,
-  { getPosts }
-)(Posts);
+export default connect(mapStateToProps, { getPosts })(Posts);

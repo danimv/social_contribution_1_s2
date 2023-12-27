@@ -7,7 +7,8 @@ import {
   GET_POST,
   GET_POSTS,
   POST_LOADING,
-  DELETE_POST
+  DELETE_POST,
+  SET_INPUT_VALUE
 } from "./types";
 
 // add post
@@ -161,3 +162,8 @@ export const clearErrors = () => {
     type: CLEAR_ERRORS
   };
 };
+
+export const setInputValue = (fieldName, value) => ({
+  type: SET_INPUT_VALUE,
+  payload: { fieldName, value },
+});
