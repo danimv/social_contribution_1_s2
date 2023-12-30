@@ -58,10 +58,12 @@ class PostItem extends Component {
     const imagePath = `/public/uploads/${post.imgUrl}`;
     const imageUrl = `${serverUrl}${imagePath}`;
     return (
-      <div className="col-md-12 mt-3 mb-4" style={{ display: 'flex', flexDirection: 'row' }}>
-        <div className="col-md-6" style={containerStyle}>
-          <div style={contentStyle}>
-            <table style={{ borderCollapse: 'separate', borderSpacing: '0 100%' }}>
+      <div className="col-md-12 mt-3 mb-4 content">
+        <div
+          className="col-md-6"
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '140%' }}>
+          <div>
+            <table style={{ borderCollapse: 'separate', borderSpacing: '0 15px' }}>
               <tbody>
                 <tr>
                   <td style={{ color: 'var(--color_1)' }}>#{this.state.data.tipus}</td>
@@ -140,18 +142,6 @@ class PostItem extends Component {
     );
   }
 }
-const containerStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontSize: '140%',
-};
-
-const contentStyle = {
-  '@media (max-width: 768px)': {
-    fontSize: '70%', 
-  },
-};
 
 PostItem.defaultProps = {
   showActions: true,

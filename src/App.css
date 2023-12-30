@@ -14,6 +14,18 @@ img {
   /* font-size: 110%; */
 }
 
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem; /* Default font size for laptops */
+
+  /* Media query for mobile devices */
+  @media (max-width: 768px) {
+    font-size: 0.6rem; /* Adjust the font size for mobile devices */
+  }
+}
+
 .landing {
   background-color: rgb(249, 249, 249);
   position: relative;
