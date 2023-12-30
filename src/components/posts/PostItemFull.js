@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike, removeLike } from '../../actions/postActions';
+import Plug from '../../../public/uploads/plug.svg';
 import profileReducer from '../../reducers/profileReducer';
 import Table from '../layout/Table';
 
@@ -12,12 +13,22 @@ class PostItem extends Component {
     super(props);
     this.state = {
       data: '',
+      icon: '',
     };
   }
   componentDidMount() {
     const { post } = this.props;
     console.log('new post', post);
-    this.setState({ data: post });
+    if (post.tipus) this.setState({ data: post });
+    this.setState({ icon: this.iconSelection(post.tipus) });
+  }
+
+  iconSelection(tipus) {
+    const iconMap = {
+      Electricitat: <Plug width="24" height="24" />,
+      Default: <Plug width="24" height="24" />, // Default icon if no match
+    };
+    return iconMap[tipus] || iconMap['Default'];
   }
 
   onDeleteClick(id) {
@@ -48,43 +59,46 @@ class PostItem extends Component {
     const imageUrl = `${serverUrl}${imagePath}`;
     return (
       <div className="col-md-12 mt-3 mb-4" style={{ display: 'flex', flexDirection: 'row' }}>
-        <div className="col-md-6" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize:'140%'}}>
-          <div>
-            <table>
+        <div className="col-md-6" style={containerStyle}>
+          <div style={contentStyle}>
+            <table style={{ borderCollapse: 'separate', borderSpacing: '0 100%' }}>
               <tbody>
                 <tr>
                   <td style={{ color: 'var(--color_1)' }}>#{this.state.data.tipus}</td>
                 </tr>
                 <tr>
-                  <td>{this.state.data.quantitat} {this.state.data.unitat}</td>
+                  <td>
+                    <img src={Plug} alt="Plug Icon" style={{ width: '12%' }} /> {this.state.data.quantitat}{' '}
+                    {this.state.data.unitat}
+                  </td>
                 </tr>
                 <tr>
                   <td>{this.state.data.name}</td>
                 </tr>
                 <tr>
                   <td>{this.state.data.text}</td>
-                </tr>                
+                </tr>
                 <tr>
                   <td>{this.state.data.lloc}</td>
                 </tr>
               </tbody>
             </table>
-            <div className='mt-4'>
-            <button onClick={this.onLikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
-              <i
-                className={classnames('fas fa-thumbs-up', {
-                  'text-info': this.findUserLike(post.likes),
-                })}
-              />
-              <span
-                style={{ color: post.likes.length == 0 ? 'white' : 'var(--color_1)' }}
-                className="badge badge-light">
-                {post.likes.length}
-              </span>
-            </button>
-            <button onClick={this.onUnlikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
-              <i className="fas fa-thumbs-down" />
-            </button>
+            <div className="mt-4">
+              <button onClick={this.onLikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
+                <i
+                  className={classnames('fas fa-thumbs-up', {
+                    'text-info': this.findUserLike(post.likes),
+                  })}
+                />
+                <span
+                  style={{ color: post.likes.length == 0 ? 'white' : 'var(--color_1)' }}
+                  className="badge badge-light">
+                  {post.likes.length}
+                </span>
+              </button>
+              <button onClick={this.onUnlikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
+                <i className="fas fa-thumbs-down" />
+              </button>
             </div>
             {showActions ? (
               <span>
@@ -107,7 +121,7 @@ class PostItem extends Component {
         </div>
         <div className="col-md-6" style={{ flex: 1 }}>
           <div className="card card-body p-2" style={{ opacity: 1 }}>
-            <img  className="card-img-top" src={imageUrl} />
+            <img className="card-img-top" src={imageUrl} />
             <div className="col-md-12">
               <p
                 className="text-center"
@@ -126,6 +140,18 @@ class PostItem extends Component {
     );
   }
 }
+const containerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '140%',
+};
+
+const contentStyle = {
+  '@media (max-width: 768px)': {
+    fontSize: '70%', 
+  },
+};
 
 PostItem.defaultProps = {
   showActions: true,
