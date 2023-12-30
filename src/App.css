@@ -18,7 +18,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   @media (max-width: 768px) {
     font-size: 0.75rem; /* Adjust the font size for mobile devices */
   }

@@ -5,6 +5,10 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike, removeLike } from '../../actions/postActions';
 import Plug from '../../../public/uploads/plug.svg';
+import Reciclar from '../../../public/uploads/recycle.svg';
+import Aigua from '../../../public/uploads/droplet.svg';
+import Transport from '../../../public/uploads/car-front-fill.svg';
+import Map from '../../../public/uploads/geo-alt.svg';
 import profileReducer from '../../reducers/profileReducer';
 import Table from '../layout/Table';
 
@@ -18,15 +22,16 @@ class PostItem extends Component {
   }
   componentDidMount() {
     const { post } = this.props;
-    console.log('new post', post);
-    if (post.tipus) this.setState({ data: post });
+    this.setState({ data: post });
     this.setState({ icon: this.iconSelection(post.tipus) });
   }
 
   iconSelection(tipus) {
     const iconMap = {
-      Electricitat: <Plug width="24" height="24" />,
-      Default: <Plug width="24" height="24" />, // Default icon if no match
+      Electricitat: <img src={Plug} alt="Electricitat Icon" style={{ width: '30px' }} />,
+      Transport: <img src={Transport} alt="Transport Icon" style={{ width: '30px' }} />,
+      Reciclar: <img src={Reciclar} alt="Reciclar Icon" style={{ width: '30px' }} />,
+      Aigua: <img src={Aigua} alt="Aigua Icon" style={{ width: '30px' }} />
     };
     return iconMap[tipus] || iconMap['Default'];
   }
@@ -69,19 +74,20 @@ class PostItem extends Component {
                   <td style={{ color: 'var(--color_1)' }}>#{this.state.data.tipus}</td>
                 </tr>
                 <tr>
-                  <td>
-                    <img src={Plug} alt="Plug Icon" style={{ width: '12%' }} /> {this.state.data.quantitat}{' '}
-                    {this.state.data.unitat}
+                  <td><img src={Map} alt="Map Icon" style={{ width: '25px' }} />{'       '}{this.state.data.lloc}</td>
+                </tr>
+                <tr>
+                  <td>                   
+                    {this.state.icon}
+                    {'       '}
+                    {this.state.data.quantitat} {this.state.data.unitat}
                   </td>
                 </tr>
                 <tr>
-                  <td>{this.state.data.name}</td>
+                  <td style={{ fontSize: '80%' }}>{this.state.data.name}</td>
                 </tr>
                 <tr>
-                  <td>{this.state.data.text}</td>
-                </tr>
-                <tr>
-                  <td>{this.state.data.lloc}</td>
+                  <td style={{ fontSize: '80%' }}>{this.state.data.text}</td>
                 </tr>
               </tbody>
             </table>
