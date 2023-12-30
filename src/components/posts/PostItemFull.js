@@ -7,6 +7,13 @@ import { deletePost, addLike, removeLike } from '../../actions/postActions';
 import profileReducer from '../../reducers/profileReducer';
 
 class PostItem extends Component {
+  state = {   
+    data: [
+      { field: 'Field 1', value: 'Value 1', imageUrl: 'url/to/image1.jpg' },
+      { field: 'Field 2', value: 'Value 2', imageUrl: 'url/to/image2.jpg' },
+      { field: 'Field 3', value: 'Value 3', imageUrl: 'url/to/image3.jpg' },
+    ],
+  };
   onDeleteClick(id) {
     console.log(id);
     this.props.deletePost(id);
@@ -28,6 +35,8 @@ class PostItem extends Component {
     }
   }
 
+  
+
   render() {
     const { post, auth, showActions } = this.props;
     const serverUrl = 'https://s1-w5x5.onrender.com'; // 'http://192.168.1.23:5000'; //'https://s1-w5x5.onrender.com';//
@@ -35,8 +44,48 @@ class PostItem extends Component {
     const imageUrl = `${serverUrl}${imagePath}`;
     console.log('postttt', imageUrl);
     return (
-      <Link to={`/post/${post._id}`} style={{ opacity: 1, textDecoration: 'none' }}>
-        <div className="col">
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ flex: 1 }}>       
+          {/* <DataTable data={data} /> */}
+          <div className="col-md-12 text-center">
+            <p className="lead" style={{ color: 'black' }}>
+              {post.text}
+            </p>
+            {showActions ? (
+              <span>
+                {' '}
+                <button onClick={this.onLikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
+                  <i
+                    className={classnames('fas fa-thumbs-up', {
+                      'text-info': this.findUserLike(post.likes),
+                    })}
+                  />
+                  <span
+                    style={{ color: post.likes.length == 0 ? 'white' : 'var(--color_1)' }}
+                    className="badge badge-light">
+                    {post.likes.length}
+                  </span>
+                </button>
+                <button onClick={this.onUnlikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
+                  <i className="fas fa-thumbs-down" />
+                </button>
+                <div style={{ paddingLeft: 15 }} />
+                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
+                  Comentaris
+                </Link>
+                {post.user === auth.user.id ? (
+                  <button
+                    onClick={this.onDeleteClick.bind(this, post._id)}
+                    type="button"
+                    className="btn btn-danger mr-1">
+                    <i className="fas fa-times" />
+                  </button>
+                ) : null}
+              </span>
+            ) : null}
+          </div>
+        </div>
+        <div style={{ flex: 1 }}>
           <div className="card card-body p-2" style={{ opacity: 1 }}>
             <img className="card-img-top" src={imageUrl} />
             <div className="col-md-12">
@@ -51,49 +100,9 @@ class PostItem extends Component {
                 {post.name}
               </p>
             </div>
-            <div className="col-md-12 text-center">
-              <p className="lead" style={{ color: 'black' }}>
-                {post.text}
-              </p>
-              {showActions ? (
-                <span>
-                  {' '}
-                  <button onClick={this.onLikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
-                    <i
-                      className={classnames('fas fa-thumbs-up', {
-                        'text-info': this.findUserLike(post.likes),
-                      })}
-                    />
-                    <span
-                      style={{ color: post.likes.length == 0 ? 'white' : 'var(--color_1)' }}
-                      className="badge badge-light">
-                      {post.likes.length}
-                    </span>
-                  </button>
-                  <button
-                    onClick={this.onUnlikeClick.bind(this, post._id)}
-                    type="button"
-                    className="btn btn-light mr-1">
-                    <i className="fas fa-thumbs-down" />
-                  </button>
-                  <div style={{ paddingLeft: 15 }} />
-                  <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                    Comentaris
-                  </Link>
-                  {post.user === auth.user.id ? (
-                    <button
-                      onClick={this.onDeleteClick.bind(this, post._id)}
-                      type="button"
-                      className="btn btn-danger mr-1">
-                      <i className="fas fa-times" />
-                    </button>
-                  ) : null}
-                </span>
-              ) : null}
-            </div>
           </div>
-        </div>
-      </Link>
+        </div>        
+      </div>
     );
   }
 }
