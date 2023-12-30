@@ -103,7 +103,7 @@ class PostForm extends Component {
           )}
           
           {this.state.isContentVisible && (
-            <div className='formContrib no-gutters' style={{ width: '70%', fontSize: '120%', margin: 'auto auto', textAlign: 'center' }}>
+            <div className='formContrib no-gutters'>
               <p>Publica la teva</p>
               <form enctype="multipart/form-data" className="p-2 bg-light border rounded" onSubmit={this.onSubmit}>
                 <div className="row g-2">
