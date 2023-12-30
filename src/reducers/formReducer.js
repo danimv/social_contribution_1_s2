@@ -15,7 +15,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_INPUT_VALUE:
-      console.log("doing reducer type SET_INPUT_VALUE"+action.payload.fieldName+action.payload.value);
+      // console.log("doing reducer type SET_INPUT_VALUE"+action.payload.fieldName+action.payload.value);
       return {
         ...state,
         inputValues: {

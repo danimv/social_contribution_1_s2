@@ -1,57 +1,136 @@
-// Import necessary dependencies
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
 import { setStoredValue } from '../../actions/postActions';
 
-const Redux = () => {
-  const [inputValue, setInputValue] = useState('');
-  const dispatch = useDispatch();
-  const storedValue = useSelector((state) => state.postE.storedValue || {});
-  const storedValueString = JSON.stringify(storedValue);
+class Redux extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      password2: '',
+      errors: {},
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
+  componentDidMount() {
+    console.log(this.props);
+    this.props.setStoredValue('sample@email.com');
+    console.log('Stored Value from Redux Store:', this.props.storedValue);
+  }
 
-  const isObjectEmpty = Object.keys(storedValue).length === 0;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
 
-  console.log(
-    'Redux State:',
-    useSelector((state) => state)
-  );
-  const handleSaveToStore = () => {
-    dispatch(setStoredValue(inputValue));
-  };
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-  useEffect(() => {
-    // Dispatch an action to set the stored value (replace 'yourValue' with the actual value)
-    dispatch({ type: 'SET_STORED_VALUE', payload: { v1: 'your data' } });
-  }, [dispatch]);
+  onSubmit(e) {
+    e.preventDefault();
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2,
+    };
 
-  return (
-    <div>
-      <h1>Simple Component</h1>
-      <label>
-        Input Value:
-        <input type="text" value={inputValue} onChange={handleInputChange} />
-      </label>
-      <button onClick={handleSaveToStore}>Save to Store</button>
-      <div>
-        <h1>Stored Value:</h1>
-        <h1>{storedValue.v1}</h1>
-        {Object.keys(storedValue).length === 0 ? <p>Stored value is empty</p> : <p>{JSON.stringify(storedValue)}</p>}
-        {/* Other JSX for your component */}
+    // this.props.registerUser(newUser);
+  }
+
+  render() {
+    const { errors } = this.state;
+
+    return (
+      <div className="register">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 m-auto">
+              <h1 className="display-4 text-center">Registra't</h1>
+              <p className="lead text-center">Crea una compte al GR8</p>
+              <form noValidate onSubmit={this.onSubmit}>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className={`form-control form-control-lg ${errors.name ? 'is-invalid' : ''}`}
+                    placeholder="Nom"
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.onChange}
+                  />
+                  {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="email"
+                    className={`form-control form-control-lg ${errors.email ? 'is-invalid' : ''}`}
+                    placeholder="Correu electrònic"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                  />
+                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="password"
+                    className={`form-control form-control-lg ${errors.password ? 'is-invalid' : ''}`}
+                    placeholder="Contrasenya"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                  />
+                  {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="password"
+                    className={`form-control form-control-lg ${errors.password2 ? 'is-invalid' : ''}`}
+                    placeholder="Repeteix la contrasenya"
+                    name="password2"
+                    value={this.state.password2}
+                    onChange={this.onChange}
+                  />
+                  {errors.password2 && <div className="invalid-feedback">{errors.password2}</div>}
+                </div>
+                <div className="text-center">
+                  <button type="submit" className="btn btn-info btn-lg btn-block mt-4">
+                    Registrar
+                  </button>
+                  <p>{this.state.password2}</p>
+                  <p>Stored Value: {this.props.storedValue}</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+Redux.propTypes = {
+  setStoredValue: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  storedValue: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    storedValue: state.postE.storedValue,
-  };
-};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+  storedValue: state.post.storedValue,
+});
 
-export default connect(mapStateToProps)(Redux);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ setStoredValue }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Redux));
