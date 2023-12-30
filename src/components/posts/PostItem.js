@@ -35,65 +35,62 @@ class PostItem extends Component {
     const imageUrl = `${serverUrl}${imagePath}`;
     // console.log('postttt', imageUrl);
     return (
-      <Link to={`/post/${post._id}`} style={{ opacity: 1, textDecoration: 'none' }}>
-        <div className="col">
-          <div className="card card-body p-2" style={{ opacity: 1 }}>
+      <div className="col">
+        <div className="card card-body p-2" style={{ opacity: 1 }}>
+          <Link to={`/post/${post._id}`} style={{ opacity: 1, textDecoration: 'none' }}>
             <img className="card-img-top" src={imageUrl} />
-            <div className="col-md-12">
-              <p
-                className="text-center"
-                id="userPost"
-                style={{
-                  fontWeight: 'bold',
-                  color: 'white',
-                  // backgroundColor: '#2F2FA2',
-                }}>
-                {post.name}
-              </p>
-            </div>
-            <div className="col-md-12 text-center">
-              <p className="lead" style={{ color: 'black' }}>
-                {post.text}
-              </p>
-              {showActions ? (
-                <span>
-                  {' '}
-                  <button onClick={this.onLikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
-                    <i
-                      className={classnames('fas fa-thumbs-up', {
-                        'text-info': this.findUserLike(post.likes),
-                      })}
-                    />
-                    <span
-                      style={{ color: post.likes.length == 0 ? 'white' : 'var(--color_1)' }}
-                      className="badge badge-light">
-                      {post.likes.length}
-                    </span>
-                  </button>
+          </Link>
+          <div className="col-md-12">
+            <p
+              className="text-center"
+              id="userPost"
+              style={{
+                fontWeight: 'bold',
+                color: 'white',
+                // backgroundColor: '#2F2FA2',
+              }}>
+              {post.name}
+            </p>
+          </div>
+          <div className="col-md-12 text-center">
+            <p className="lead" style={{ color: 'black' }}>
+              {post.text}
+            </p>
+            {showActions ? (
+              <span>
+                {' '}
+                <button onClick={this.onLikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
+                  <i
+                    className={classnames('fas fa-thumbs-up', {
+                      'text-info': this.findUserLike(post.likes),
+                    })}
+                  />
+                  <span
+                    style={{ color: post.likes.length == 0 ? 'white' : 'var(--color_1)' }}
+                    className="badge badge-light">
+                    {post.likes.length}
+                  </span>
+                </button>
+                <button onClick={this.onUnlikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
+                  <i className="fas fa-thumbs-down" />
+                </button>
+                <div style={{ paddingLeft: 15 }} />
+                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
+                  Comentaris
+                </Link>
+                {post.user === auth.user.id ? (
                   <button
-                    onClick={this.onUnlikeClick.bind(this, post._id)}
+                    onClick={this.onDeleteClick.bind(this, post._id)}
                     type="button"
-                    className="btn btn-light mr-1">
-                    <i className="fas fa-thumbs-down" />
+                    className="btn btn-danger mr-1">
+                    <i className="fas fa-times" />
                   </button>
-                  <div style={{ paddingLeft: 15 }} />
-                  <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                    Comentaris
-                  </Link>
-                  {post.user === auth.user.id ? (
-                    <button
-                      onClick={this.onDeleteClick.bind(this, post._id)}
-                      type="button"
-                      className="btn btn-danger mr-1">
-                      <i className="fas fa-times" />
-                    </button>
-                  ) : null}
-                </span>
-              ) : null}
-            </div>
+                ) : null}
+              </span>
+            ) : null}
           </div>
         </div>
-      </Link>
+      </div>
     );
   }
 }

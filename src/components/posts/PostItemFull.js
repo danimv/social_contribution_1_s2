@@ -16,13 +16,10 @@ class PostItem extends Component {
   }
   componentDidMount() {
     const { post } = this.props;
-    console.log(post);
-    // const selectedKeys = ['text', 'name'];
-    // const dataArray = selectedKeys.map((key) => post[key]);
-    // const dataArray = Object.entries(post);
-    // console.log(dataArray);
+    console.log('new post', post);
     this.setState({ data: post });
   }
+
   onDeleteClick(id) {
     console.log(id);
     this.props.deletePost(id);
@@ -50,40 +47,48 @@ class PostItem extends Component {
     const imagePath = `/public/uploads/${post.imgUrl}`;
     const imageUrl = `${serverUrl}${imagePath}`;
     return (
-      <div className="col-md-12 mt-3" style={{ display: 'flex', flexDirection: 'row' }}>
-        <div className="col-md-5">
+      <div className="col-md-12 mt-3 mb-4" style={{ display: 'flex', flexDirection: 'row' }}>
+        <div className="col-md-6" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize:'140%'}}>
           <div>
             <table>
               <tbody>
                 <tr>
-                  <td style={{ color: 'var(--color_1)' }}>{this.state.data.tipus}</td>
+                  <td style={{ color: 'var(--color_1)' }}>#{this.state.data.tipus}</td>
+                </tr>
+                <tr>
+                  <td>{this.state.data.quantitat} {this.state.data.unitat}</td>
+                </tr>
+                <tr>
+                  <td>{this.state.data.name}</td>
                 </tr>
                 <tr>
                   <td>{this.state.data.text}</td>
-                </tr>
+                </tr>                
                 <tr>
-                  <td>#{this.state.data.lloc}</td>
+                  <td>{this.state.data.lloc}</td>
                 </tr>
               </tbody>
             </table>
+            <div className='mt-4'>
+            <button onClick={this.onLikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
+              <i
+                className={classnames('fas fa-thumbs-up', {
+                  'text-info': this.findUserLike(post.likes),
+                })}
+              />
+              <span
+                style={{ color: post.likes.length == 0 ? 'white' : 'var(--color_1)' }}
+                className="badge badge-light">
+                {post.likes.length}
+              </span>
+            </button>
+            <button onClick={this.onUnlikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
+              <i className="fas fa-thumbs-down" />
+            </button>
+            </div>
             {showActions ? (
               <span>
                 {' '}
-                <button onClick={this.onLikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
-                  <i
-                    className={classnames('fas fa-thumbs-up', {
-                      'text-info': this.findUserLike(post.likes),
-                    })}
-                  />
-                  <span
-                    style={{ color: post.likes.length == 0 ? 'white' : 'var(--color_1)' }}
-                    className="badge badge-light">
-                    {post.likes.length}
-                  </span>
-                </button>
-                <button onClick={this.onUnlikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
-                  <i className="fas fa-thumbs-down" />
-                </button>
                 <div style={{ paddingLeft: 15 }} />
                 <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
                   Comentaris
@@ -100,9 +105,9 @@ class PostItem extends Component {
             ) : null}
           </div>
         </div>
-        <div className="col-md-7" style={{ flex: 1 }}>
+        <div className="col-md-6" style={{ flex: 1 }}>
           <div className="card card-body p-2" style={{ opacity: 1 }}>
-            <img className="card-img-top" src={imageUrl} />
+            <img  className="card-img-top" src={imageUrl} />
             <div className="col-md-12">
               <p
                 className="text-center"
