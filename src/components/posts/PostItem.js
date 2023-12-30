@@ -30,10 +30,14 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
+    const serverUrl = 'http://192.168.1.23:5000';
+    const imagePath = `/public/uploads/${post.imgUrl}`;
+    const imageUrl = `${serverUrl}${imagePath}`;
+    console.log('postttt', imageUrl);
     return (
       <div className="col">
         <div className="card card-body p-2" style={{ opacity: 1 }}>
-          <img className="card-img-top" src="/uploads/logo.png" />
+          <img className="card-img-top" src={imageUrl} />
           <div className="col-md-12">
             <p
               className="text-center"
