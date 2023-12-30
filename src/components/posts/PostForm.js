@@ -8,55 +8,48 @@ import { api } from '../../actions/api';
 import { SET_INPUT_VALUE } from '../../actions/types';
 
 const PostForm = ({ auth, errors, addPost }) => {
-  const [formState, setFormState] = useState({
-    inputValues: {
-      name: '',
-      text: '',
-      user: '',
-      quantitat: '',
-      tipus: 'a',
-      unitat: '',
-      image: null,
-    },
-    newData: null,
-  });
+  const dispatch = useDispatch();
+  const inputValues = useSelector((state) => state.inputValues || {});
+  const [newData, setData] = useState(null);
+  const [text, setText] = useState('');
+  const [selectedType, setSelectedType] = useState('');
+  const [quantitat, setQuantitat] = useState('');
+  const [unitat, setUnitat] = useState('');
 
   useEffect(() => {
-    // Fetch data for newData
     api.get('/api/posts/contribtypes').then((res) => {
       console.log(res.data);
-      setFormState((prevState) => ({
-        ...prevState,
-        newData: res.data,
-      }));
+      setData(res.data);
     });
   }, []);
 
   const handleInputChange = (fieldName, value) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      inputValues: {
-        ...prevState.inputValues,
-        [fieldName]: value,
+    console.log(fieldName, value);
+    dispatch({
+      type: SET_INPUT_VALUE,
+      payload: {
+        fieldName,
+        value,
       },
-    }));
-
-    // Additional logic based on the updated form state
-    const selectedTypeObject = formState.newData.find((type) => type.name === value);
+    }); 
+    
+    // Use the updated value directly
+    const selectedTypeObject = newData.find((type) => type.name === value);
     const selectedTypeUnit = selectedTypeObject ? selectedTypeObject.unit : '';
-    // ... rest of the code
-  };
+    setUnitat(selectedTypeUnit);
+  };  
 
   const onSubmit = (e) => {
     e.preventDefault();
     const { user } = auth;
     const newPost = {
       text: 'do',
-      quantitat: formState.inputValues.quantitat,
-      tipus: formState.inputValues.tipus,
-      unitat: formState.inputValues.unitat,
+      quantitat: inputValues.quantitat,
+      tipus: inputValues.tipus,
+      unitat: inputValues.unitat,
       name: user.name,
     };
+    addPost(newPost);
     // Handle the form data as needed
     console.log('Form Data:', newPost);
   };
@@ -99,9 +92,9 @@ const PostForm = ({ auth, errors, addPost }) => {
                     value={inputValues.quantitat}
                     onChange={(e) => handleInputChange('quantitat', e.target.value)}
                   />
-                  <input type="hidden" className="form-control" id="unitat" name="unitat" value={unitat} />
+                  <input type="hidden" className="form-control" id="unitat" name="unitat" value={inputValues.unitat} />
                   <label className="form-label" htmlFor="quantitat" id="unitats" name="unitats">
-                    Indica els <span id="unitatLabel">{unitat}</span>
+                    Indica els <span id="unitatLabel">{inputValues.unitat}</span>
                   </label>
                 </div>
               </div>
