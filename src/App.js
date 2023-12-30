@@ -15,6 +15,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
+import Redux from "./components/posts/Redux";
 import Register from "./components/auth/Register";
 import Profile from "./components/profile/Profile";
 import Profiles from "./components/profiles/Profiles";
@@ -67,6 +68,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/redux" component={Redux} />
               <Route exact path="/profile/:id" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />

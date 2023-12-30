@@ -73,6 +73,10 @@ class Navbar extends Component {
                   {' '}
                   Usuaris
                 </Link>
+                <Link className="nav-link" to="/redux" style={{ color: 'white' }}>
+                  {' '}
+                  Redux
+                </Link>
               </li>
             </ul>
             {isAuthenticated ? authLinks : guestLinks}

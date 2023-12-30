@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,6 +9,7 @@ import { SET_INPUT_VALUE } from '../../actions/types';
 
 const PostForm = ({ auth, errors, addPost }) => {
   const dispatch = useDispatch();
+  const memoizedDispatch = useCallback(dispatch, [dispatch]);
   const inputValues = useSelector((state) => state.inputValues || {});
   const [newData, setData] = useState(null);
   const [text, setText] = useState('');
@@ -21,7 +22,8 @@ const PostForm = ({ auth, errors, addPost }) => {
       console.log(res.data);
       setData(res.data);
     });
-  }, []);
+    console.log('show the updated values', inputValues);
+  }, [inputValues.tipus, memoizedDispatch]);
 
   const handleInputChange = (fieldName, value) => {
     console.log(fieldName, value);
@@ -31,15 +33,15 @@ const PostForm = ({ auth, errors, addPost }) => {
         fieldName,
         value,
       },
-    }); 
-    
+    });
     // Use the updated value directly
     const selectedTypeObject = newData.find((type) => type.name === value);
     const selectedTypeUnit = selectedTypeObject ? selectedTypeObject.unit : '';
     setUnitat(selectedTypeUnit);
-  };  
+  };
 
   const onSubmit = (e) => {
+    console.log('Input Values from Redux Store:', inputValues);
     e.preventDefault();
     const { user } = auth;
     const newPost = {
@@ -67,9 +69,9 @@ const PostForm = ({ auth, errors, addPost }) => {
                     className="form-control custom-select-lg"
                     id="tipus"
                     name="tipus"
-                    value={inputValues.tipus}
+                    value={''}
                     onChange={(e) => handleInputChange('tipus', e.target.value)}>
-                    <option value="" selected></option>
+                    <option value=""></option>
                     {newData &&
                       newData.map((option) => (
                         <option key={option.name} value={option.name}>
@@ -102,7 +104,7 @@ const PostForm = ({ auth, errors, addPost }) => {
             <div className="row g-2">
               <div className="col-md">
                 <div className="form-floating mb-3">
-                  <input className="form-control" type="text" name="name" />
+                  <input className="form-control" type="text" name="name" id="name" />
                   <label htmlFor="name" className="form-label">
                     Posa-hi un nom
                   </label>
@@ -110,8 +112,8 @@ const PostForm = ({ auth, errors, addPost }) => {
               </div>
               <div className="col-md">
                 <div className="form-floating mb-3">
-                  <input className="form-control" type="text" name="description" />
-                  <label htmlFor="tipus" className="form-label">
+                  <input className="form-control" type="text" name="description" id="description" />
+                  <label htmlFor="description" className="form-label">
                     Descripció breu
                   </label>
                 </div>
@@ -134,16 +136,16 @@ const PostForm = ({ auth, errors, addPost }) => {
             <div className="row g-2">
               <div className="col-md">
                 <div className="form-floating mb-3">
-                  <input className="form-control" type="text" name="lloc" />
-                  <label htmlFor="tipus" className="form-label">
+                  <input className="form-control" type="text" name="lloc" id="lloc" />
+                  <label htmlFor="lloc" className="form-label">
                     Lloc
                   </label>
                 </div>
               </div>
             </div>
             <div className="form-floating mb-3">
-              <input className="form-control" type="file" name="image" accept="image/*" />
-              <label htmlFor="tipus" className="form-label">
+              <input className="form-control" type="file" name="image" id="image" accept="image/*" />
+              <label htmlFor="image" className="form-label">
                 Imatge
               </label>
             </div>
@@ -163,7 +165,7 @@ const PostForm = ({ auth, errors, addPost }) => {
 
 PostForm.propTypes = {
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
