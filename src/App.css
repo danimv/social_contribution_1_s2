@@ -3,8 +3,8 @@ img {
 }
 
 :root {
-  --color_1: rgb(23, 162, 184); 
-  --color_2: #0dcaf0;   /*color: 'var(--color_1)'*/
+  --color_1: rgb(23, 162, 184);
+  --color_2: #0dcaf0; /*color: 'var(--color_1)'*/
   --color_3: #acd9de;
 }
 
@@ -18,11 +18,20 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.1rem; /* Default font size for laptops */
-
-  /* Media query for mobile devices */
+  font-size: 1.1rem;
   @media (max-width: 768px) {
-    font-size: 0.6rem; /* Adjust the font size for mobile devices */
+    font-size: 0.75rem; /* Adjust the font size for mobile devices */
+  }
+}
+
+.formContrib {
+  width: 80%;
+  font-size: 120%;
+  /* margin: auto auto; */
+  text-align: center;
+  @media (max-width: 68px) {
+    width: 110%;
+    font-size: 100%;
   }
 }
 
@@ -31,15 +40,15 @@ img {
   position: relative;
   /* background: url("./img/landscape.jpg") no-repeat; */
   background-size: cover;
-  background-position: center; 
+  background-position: center;
   height: 100%;
   margin-top: -24px;
   padding-bottom: 10px;
   /* opacity: 0.4;    */
 }
 
-#userPost{
-  background-color:#acd9de;
+#userPost {
+  background-color: #acd9de;
 }
 
 .landing-inner {
