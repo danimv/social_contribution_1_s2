@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import { getPost } from "../../actions/postActions";
-import PostItem from "../posts/PostItem";
+import PostItemFull from "../posts/PostItemFull";
 import CommentForm from "./CommentForm";
 import { Link } from "react-router-dom";
 import CommentFeed from "./CommentFeed";

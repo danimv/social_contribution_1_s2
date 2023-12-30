@@ -30,7 +30,7 @@ class Posts extends Component {
           <div className="row">
             <div className="col-md-12">
               <PostForm />
-              <div className="row row-cols-md-2 g-3 mt-2">{postContent}</div>
+              <div className="row row-cols-md-2 g-3 mt-2"  style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row' }}>{postContent}</div>
             </div>
           </div>
         </div>
