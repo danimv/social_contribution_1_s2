@@ -25,12 +25,12 @@ class Posts extends Component {
       postContent = <PostFeed posts={posts} />;
     }
     return (
-      <div className="feed">
+      <div className="feed" >
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <PostForm />
-              <div className="row row-cols-md-4 g-3 mt-2">{postContent}</div>
+              <div className="row row-cols-md-2 g-3 mt-2">{postContent}</div>
             </div>
           </div>
         </div>

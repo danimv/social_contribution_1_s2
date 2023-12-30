@@ -32,8 +32,8 @@ class PostItem extends Component {
     const { post, auth, showActions } = this.props;
     return (
       <div className="col">
-        <div className="card card-body p-2" style={{ opacity:1 }}>
-        <img className="card-img-top" src='/uploads/logo.png' />
+        <div className="card card-body p-2" style={{ opacity: 1 }}>
+          <img className="card-img-top" src="/uploads/logo.png" />
           <div className="col-md-12">
             <p
               className="text-center"

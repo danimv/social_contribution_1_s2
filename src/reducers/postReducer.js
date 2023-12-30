@@ -1,10 +1,11 @@
-import { ADD_POST, GET_POSTS, GET_POST, DELETE_POST, POST_LOADING, SET_STORED_VALUE } from '../actions/types';
+import { ADD_POST, GET_POSTS, GET_POST, DELETE_POST, POST_LOADING, SET_STORED_VALUE, SET_INPUT_VALUE } from '../actions/types';
 
 const initialState = {
   posts: [],
   post: [],
   loading: false,
-  storedValue: '', 
+  storedValue: '',
+  inputValues: ''
 };
 
 export default function (state = initialState, action) {
@@ -42,6 +43,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
         storedValue: action.payload,
+      };
+    case SET_INPUT_VALUE:
+      // console.log("doing reducer type SET_INPUT_VALUE"+action.payload.fieldName+action.payload.value);
+      return {
+        ...state,
+        inputValues: {
+          ...state.inputValues,
+          [action.payload.fieldName]: action.payload.value,
+        },
       };
     default:
       return state;

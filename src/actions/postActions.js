@@ -164,14 +164,16 @@ export const clearErrors = () => {
   };
 };
 
-export const setInputValue = (fieldName, value) => ({
-  type: SET_INPUT_VALUE,
-  payload: { fieldName, value },
-});
-
 export const setStoredValue = (value) => (dispatch) => {
   dispatch({
     type: SET_STORED_VALUE,
     payload: value,
   });
 };
+
+export const setInputValue = (fieldName, value) => ({
+  type: SET_INPUT_VALUE,
+  payload: { fieldName, value },
+});
+
+
