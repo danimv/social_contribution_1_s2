@@ -90,7 +90,7 @@ class PostForm extends Component {
 
   render() {
     return (
-      <div className="container mt-4 no-gutters">
+      <div className="container mt-3 no-gutters">
         <div className="row no-gutters">
         {!this.state.isContentVisible && (
           <p><button style={{background: 'var(--color_3)', color: 'white', border: 0, fontSize:'120%'}} onClick={this.toggleContentVisibility}>
@@ -104,7 +104,7 @@ class PostForm extends Component {
           
           {this.state.isContentVisible && (
             <div className='formContrib no-gutters'>
-              <p>Publica la teva</p>
+              <p style={{color: 'var(--color_1)', marginBottom: '-1px'}}>Publica la teva</p>
               <form enctype="multipart/form-data" className="p-2 bg-light border rounded" onSubmit={this.onSubmit}>
                 <div className="row g-2">
                   <div className="col-md">

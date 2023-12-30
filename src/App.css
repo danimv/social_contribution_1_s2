@@ -25,14 +25,28 @@ img {
 }
 
 .formContrib {
-  width: 80%;
+  width: 90%;
   font-size: 120%;
-  /* margin: auto auto; */
+  margin: auto auto;
   text-align: center;
-  @media (max-width: 68px) {
-    width: 110%;
+  @media (max-width: 768px) {
+    width: 90%;
     font-size: 100%;
   }
+}
+
+.nav_div{
+  margin: auto auto; 
+  @media (max-width: 768px) {
+    margin-left: 5%;
+  }
+
+}
+
+.container{
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+  width: 100%;  
 }
 
 .landing {

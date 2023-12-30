@@ -59,14 +59,14 @@ class Navbar extends Component {
     );
     return (
       <nav className="navbar navbar-expand-sm mb-4" style={{ backgroundColor: '#17A2B8', fontSize: '120%' }}>
-        <div className="container">
+        <div className="container nav_div">
           <NavLink className="nav-link nav_link" to="/" style={{ color: 'white' }}>
             GR8
           </NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobile-nav">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="mobile-nav">
+          <div className="collapse navbar-collapse ml-4" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <NavLink className="nav-link nav_link" to="/profiles" style={{ color: 'white' }} >

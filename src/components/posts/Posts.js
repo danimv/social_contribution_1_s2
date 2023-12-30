@@ -25,12 +25,12 @@ class Posts extends Component {
       postContent = <PostFeed posts={posts} />;
     }
     return (
-      <div className="feed" >
+      <div className="feed no-gutters" >
         <div className="container no-gutters">
           <div className="row no-gutters">
             <div className="col-md-12 no-gutters">
               <PostForm />
-              <div className="row row-cols-md-2 g-3 mt-2"  style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row' }}>{postContent}</div>
+              <div className="row row-cols-md-2 g-3 mt-4"  style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row' }}>{postContent}</div>
             </div>
           </div>
         </div>

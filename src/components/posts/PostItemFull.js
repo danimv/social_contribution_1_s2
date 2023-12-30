@@ -124,18 +124,16 @@ class PostItem extends Component {
         <div className="col-md-6" style={{ flex: 1 }}>
           <div className="card card-body p-2" style={{ opacity: 1 }}>
             <img className="card-img-top" src={imageUrl} />
-            <div className="col-md-12">
-              <p
-                className="text-center"
-                id="userPost"
-                style={{
-                  fontWeight: 'bold',
-                  color: 'white',
-                  // backgroundColor: '#2F2FA2',
-                }}>
-                {post.name}
-              </p>
-            </div>
+            <p
+              className="text-center"
+              id="userPost"
+              style={{
+                fontWeight: 'bold',
+                color: 'white',
+                // backgroundColor: '#2F2FA2',
+              }}>
+              {post.name}
+            </p>
           </div>
         </div>
       </div>
