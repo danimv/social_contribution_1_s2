@@ -8,7 +8,8 @@ import {
   GET_POSTS,
   POST_LOADING,
   DELETE_POST,
-  SET_INPUT_VALUE
+  SET_INPUT_VALUE,
+  SET_STORED_VALUE
 } from "./types";
 
 // add post
@@ -166,4 +167,9 @@ export const clearErrors = () => {
 export const setInputValue = (fieldName, value) => ({
   type: SET_INPUT_VALUE,
   payload: { fieldName, value },
+});
+
+export const setStoredValue = (newValue) => ({
+  type: SET_STORED_VALUE,
+  payload: newValue,
 });
