@@ -33,7 +33,7 @@ class PostItem extends Component {
     const serverUrl = 'https://s1-w5x5.onrender.com'; // 'http://192.168.1.23:5000'; //'https://s1-w5x5.onrender.com';//
     const imagePath = `/public/uploads/${post.imgUrl}`;
     const imageUrl = `${serverUrl}${imagePath}`;
-    console.log('postttt', imageUrl);
+    // console.log('postttt', imageUrl);
     return (
       <Link to={`/post/${post._id}`} style={{ opacity: 1, textDecoration: 'none' }}>
         <div className="col">

@@ -5,15 +5,24 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike, removeLike } from '../../actions/postActions';
 import profileReducer from '../../reducers/profileReducer';
+import Table from '../layout/Table';
 
 class PostItem extends Component {
-  state = {   
-    data: [
-      { field: 'Field 1', value: 'Value 1', imageUrl: 'url/to/image1.jpg' },
-      { field: 'Field 2', value: 'Value 2', imageUrl: 'url/to/image2.jpg' },
-      { field: 'Field 3', value: 'Value 3', imageUrl: 'url/to/image3.jpg' },
-    ],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: '',
+    };
+  }
+  componentDidMount() {
+    const { post } = this.props;
+    console.log(post);
+    // const selectedKeys = ['text', 'name'];
+    // const dataArray = selectedKeys.map((key) => post[key]);
+    // const dataArray = Object.entries(post);
+    // console.log(dataArray);
+    this.setState({ data: post });
+  }
   onDeleteClick(id) {
     console.log(id);
     this.props.deletePost(id);
@@ -35,22 +44,28 @@ class PostItem extends Component {
     }
   }
 
-  
-
   render() {
     const { post, auth, showActions } = this.props;
     const serverUrl = 'https://s1-w5x5.onrender.com'; // 'http://192.168.1.23:5000'; //'https://s1-w5x5.onrender.com';//
     const imagePath = `/public/uploads/${post.imgUrl}`;
     const imageUrl = `${serverUrl}${imagePath}`;
-    console.log('postttt', imageUrl);
     return (
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div style={{ flex: 1 }}>       
-          {/* <DataTable data={data} /> */}
-          <div className="col-md-12 text-center">
-            <p className="lead" style={{ color: 'black' }}>
-              {post.text}
-            </p>
+      <div className="col-md-12 mt-3" style={{ display: 'flex', flexDirection: 'row' }}>
+        <div className="col-md-5">
+          <div>
+            <table>
+              <tbody>
+                <tr>
+                  <td style={{ color: 'var(--color_1)' }}>{this.state.data.tipus}</td>
+                </tr>
+                <tr>
+                  <td>{this.state.data.text}</td>
+                </tr>
+                <tr>
+                  <td>#{this.state.data.lloc}</td>
+                </tr>
+              </tbody>
+            </table>
             {showActions ? (
               <span>
                 {' '}
@@ -85,7 +100,7 @@ class PostItem extends Component {
             ) : null}
           </div>
         </div>
-        <div style={{ flex: 1 }}>
+        <div className="col-md-7" style={{ flex: 1 }}>
           <div className="card card-body p-2" style={{ opacity: 1 }}>
             <img className="card-img-top" src={imageUrl} />
             <div className="col-md-12">
@@ -101,7 +116,7 @@ class PostItem extends Component {
               </p>
             </div>
           </div>
-        </div>        
+        </div>
       </div>
     );
   }
