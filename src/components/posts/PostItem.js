@@ -30,7 +30,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
-    const serverUrl = 'http://192.168.1.23:5000';
+    const serverUrl = 'https://s1-w5x5.onrender.com';// 'http://192.168.1.23:5000'; //'https://s1-w5x5.onrender.com';//
     const imagePath = `/public/uploads/${post.imgUrl}`;
     const imageUrl = `${serverUrl}${imagePath}`;
     console.log('postttt', imageUrl);
