@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
@@ -19,16 +19,16 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto"> 
         <li className="nav-item">
-          <Link className="nav-link" to="/feed" style={{ color: 'white' }}>
-            Escriu
-          </Link>
+          <NavLink className="nav-link nav_link" to="/feed" style={{ color: 'white' }}>
+            Publicacions
+          </NavLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/dashboard" style={{ color: 'white' }}>
+          <NavLink className="nav-link nav_link" to="/dashboard" style={{ color: 'white' }}>
             Perfil
-          </Link>
+          </NavLink>
         </li>
-        <li className="nav-item">
+        <li className="nav-item nav_link">
           <a href="" onClick={this.onLogoutClick.bind(this)} className="nav-link">
             <span
               style={{
@@ -46,33 +46,33 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/register" style={{ color: 'white' }}>
+          <NavLink className="nav-link nav_link" to="/register" style={{ color: 'white' }}>
             Registra't
-          </Link>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/login" style={{ color: 'white' }}>
+          <NavLink className="nav-link nav_link" to="/login" style={{ color: 'white' }}>
             Entra
-          </Link>
+          </NavLink>
         </li>
       </ul>
     );
     return (
-      <nav className="navbar navbar-expand-sm mb-4" style={{ backgroundColor: '#17A2B8' }}>
+      <nav className="navbar navbar-expand-sm mb-4" style={{ backgroundColor: '#17A2B8', fontSize: '120%' }}>
         <div className="container">
-          <Link className="navbar-brand" to="/" style={{ color: 'white' }}>
+          <NavLink className="nav-link nav_link" to="/" style={{ color: 'white' }}>
             GR8
-          </Link>
+          </NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobile-nav">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/profiles" style={{ color: 'white' }}>
+                <NavLink className="nav-link nav_link" to="/profiles" style={{ color: 'white' }} >
                   {' '}
                   Usuaris
-                </Link>
+                </NavLink>
               </li>
             </ul>
             {isAuthenticated ? authLinks : guestLinks}

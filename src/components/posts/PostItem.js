@@ -63,7 +63,9 @@ class PostItem extends Component {
                       'text-info': this.findUserLike(post.likes),
                     })}
                   />
-                  <span className="badge badge-light">{post.likes.length}</span>
+                  <span style={{ color: post.likes.length == 0 ? 'white' : 'var(--color_1)'}} className="badge badge-light">
+                    {post.likes.length}
+                  </span>
                 </button>
                 <button onClick={this.onUnlikeClick.bind(this, post._id)} type="button" className="btn btn-light mr-1">
                   <i className="fas fa-thumbs-down" />

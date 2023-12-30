@@ -2,6 +2,18 @@ img {
   width: 100%;
 }
 
+:root {
+  --color_1: rgb(23, 162, 184); 
+  --color_2: #0dcaf0;   /*color: 'var(--color_1)'*/
+  --color_3: #acd9de;
+}
+
+.active {
+  color: #ff0000; /* Your desired active link color */
+  font-weight: bold;
+  /* font-size: 110%; */
+}
+
 .landing {
   background-color: rgb(249, 249, 249);
   position: relative;

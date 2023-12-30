@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import PostFeed from "../posts/PostFeed";
-import { getPosts } from "../../actions/postActions";
-import Spinner from "../common/Spinner";
+import PostFeed from '../posts/PostFeed';
+import { getPosts } from '../../actions/postActions';
+import Spinner from '../common/Spinner';
 
 class Landing extends Component {
   componentDidMount() {
@@ -14,6 +14,7 @@ class Landing extends Component {
     }
   }
   render() {
+    const { isAuthenticated, user } = this.props.auth;
     const { posts, loading } = this.props.post;
     let postContent;
 
@@ -24,27 +25,30 @@ class Landing extends Component {
     }
     return (
       <div className="landing">
-  <div className="">
-    <div className="container">
-      <div className="row mb-5">
-        <div className="col-md-12 text-center mt-3">
-          <h1 className="display-3 mb-4" style={{ color: '#17A2B8' }}>Global Regeneration ∞</h1>
-          <hr />
-          <Link to="/register" className="btn btn-lg btn-info me-2">
-            Registra't
-          </Link>
-          <Link to="/login" className="btn btn-lg btn-light ms-2">
-            Entra
-          </Link>                
-        </div>             
+        <div className="">
+          <div className="container">
+            <div className="row mb-5">
+              <div className="col-md-12 text-center mt-3">
+                <h1 className="display-3 mb-4" style={{ color: '#17A2B8' }}>
+                  Global Regeneration ∞
+                </h1>
+                <hr />
+                {!isAuthenticated && (
+                  <div>
+                    <Link to="/register" className="btn btn-lg btn-info me-2">
+                      Registra't
+                    </Link>
+                    <Link to="/login" className="btn btn-lg btn-light ms-2">
+                      Entra
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="row row-cols-md-4 g-3">{postContent}</div>
+          </div>
+        </div>
       </div>
-      <div className="row row-cols-md-4 g-3">
-        {postContent}
-      </div>
-    </div>
-  </div>
-</div>
-
     );
   }
 }
@@ -52,12 +56,12 @@ class Landing extends Component {
 Landing.propTypes = {
   auth: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  post: state.post
+  post: state.post,
 });
 
 export default connect(mapStateToProps, { getPosts })(Landing);
