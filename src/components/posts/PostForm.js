@@ -60,21 +60,20 @@ class PostForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('tipus', this.state.tipus);
+    formData.append('quantitat', this.state.quantitat);
+    formData.append('unitat', this.state.unitat);
+    formData.append('name', this.state.name);
+    formData.append('data', this.state.data);
+    formData.append('hora', this.state.hora);
+    formData.append('description', this.state.description);
+    formData.append('lloc', this.state.lloc);
+    formData.append('image', this.state.image);
     const { addPost } = this.props;
-    // const { user } = this.props.auth;
-    const newPost = {
-      tipus: this.state.tipus,
-      quantitat: this.state.quantitat,
-      unitat: this.state.unitat,
-      name: this.state.name,
-      data: this.state.data,
-      hora: this.state.hora,
-      description: this.state.description,
-      lloc: this.state.lloc,
-      image: this.state.image,
-    };
-    addPost(newPost);
-    console.log('Form Data:', newPost);
+
+    addPost(formData);
+    console.log('Form Data:', formData);
     this.resetForm();
     this.setState({ submissionMessage: 'Enviat correctament!' });
     setTimeout(() => {
