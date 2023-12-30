@@ -45,7 +45,7 @@ class Landing extends Component {
                 )}
               </div>
             </div>
-            <div className="row row-cols-md-4 g-3">{postContent}</div>
+            <div className="row row-cols-md-3 g-3">{postContent}</div>
           </div>
         </div>
       </div>
