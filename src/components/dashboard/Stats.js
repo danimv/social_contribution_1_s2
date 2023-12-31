@@ -49,7 +49,7 @@ class Stats extends Component {
             <table className="styled-table">
               <thead>
                 <tr>
-                  <th>Post</th>
+                  <th>Tipus</th>
                   <th>Número</th>
                   <th>Regeneració</th>
                 </tr>
