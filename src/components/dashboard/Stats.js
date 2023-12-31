@@ -22,9 +22,8 @@ class Stats extends Component {
     };
   }
   componentDidMount() {
-    const { user } = this.props.auth;
-    console.log('userid...',user._id);
-    this.setState({ stats: this.props.getStats(user._id)});    
+    const { user } = this.props.auth;    
+    this.setState({ stats: this.props.getStats()});    
   }
 
   iconSelection(tipus) {

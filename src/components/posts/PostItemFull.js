@@ -72,16 +72,16 @@ class PostItem extends Component {
               <tbody>
                 <tr>
                   <td style={{ color: 'var(--color_1)' }}>#{this.state.data.tipus}</td>
-                </tr>
-                <tr>
-                  <td><img src={Map} alt="Map Icon" style={{ width: '25px' }} />{'       '}{this.state.data.lloc}</td>
-                </tr>
+                </tr>                
                 <tr>
                   <td>                   
                     {this.state.icon}
                     {'       '}
                     {this.state.data.quantitat} {this.state.data.unitat}
                   </td>
+                </tr>
+                <tr>
+                  <td><img src={Map} alt="Map Icon" style={{ width: '25px' }} />{'       '}{this.state.data.lloc}</td>
                 </tr>
                 <tr>
                   <td style={{ fontSize: '80%' }}>{this.state.data.name}</td>
