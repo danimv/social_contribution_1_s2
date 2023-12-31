@@ -132,9 +132,9 @@ img {
   color: white;
 }
 
-.styled-table tbody tr {
+/* .styled-table tbody tr {
   transition: all 0.3s;
-}
+} */
 
 .styled-table tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.05);
