@@ -8,7 +8,6 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    // Get the token from local storage
     const token = localStorage.getItem('jwtToken');
     // Set auth token in the request headers
     if (token) {
