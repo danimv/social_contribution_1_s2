@@ -1,28 +1,22 @@
+// ProgressChart.js
 import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const ProgressChart = ({ progress }) => {
-  const data = {
-    labels: ['Progress', 'Remaining'],
-    datasets: [
-      {
-        data: [progress, 100 - progress],
-        backgroundColor: ['#36A2EB', 'lightgray'],
-        borderWidth: 0,
-      },
-    ],
-  };
-
-  const options = {
-    cutoutPercentage: 75, // Adjust this to control the size of the center hole
-    rotation: 1 * Math.PI, // Start the chart from the top
-    circumference: 1 * Math.PI, // Set the total circumference to create a circle
-    legend: {
-      display: false,
-    },
-  };
-
-  return <Doughnut data={data} options={options} />;
+  return (
+    <div style={{ width: '100px' }}>
+      <CircularProgressbar
+        value={progress * 100} 
+        text={`${progress.toFixed(2)}`} 
+        styles={buildStyles({
+          textColor: '#000', // Change text color
+          pathColor: 'var(--color_2)',
+          trailColor: 'lightgray',
+        })}
+      />
+    </div>
+  );
 };
 
 export default ProgressChart;

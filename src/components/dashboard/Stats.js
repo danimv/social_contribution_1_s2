@@ -21,10 +21,13 @@ class Stats extends Component {
       user: '',
     };
   }
-  componentDidMount() {
-    const stats = this.props.getStats();
-    // this.setState({ stats: stats });
-    console.log(stats);
+  async componentDidMount() {
+    try {
+      const stats = await this.props.getStats();
+      console.log(stats);
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    }
   }
 
   iconSelection(tipus) {
@@ -41,29 +44,32 @@ class Stats extends Component {
     const { stats } = this.props.stats;
     return (
       <div className="col-md-12 mt-3 mb-4">
-        <div className="table-container">
-          <table className="styled-table">
-            <thead>
-              <tr>
-                <th>Post</th>
-                <th>Número</th>
-                <th>Regeneració</th>
-              </tr>
-            </thead>
-            <tbody>
-              {stats &&
-                stats.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.tipus}</td>
-                    <td>{item.count}</td>
-                    <td>{item.count}</td>                    
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <ProgressChart progress={75} />
+        <div className="row">
+          <div className="col-md-6 table-container">
+            <table className="styled-table">
+              <thead>
+                <tr>
+                  <th>Post</th>
+                  <th>Número</th>
+                  <th>Regeneració</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stats &&
+                  stats.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.tipus}</td>
+                      <td>{item.count}</td>
+                      <td>{item.count}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="col-md-6">
+            <p>Regeneració personal</p>
+            {ProgressChart ? <ProgressChart progress={0.73} /> : null}
+          </div>
         </div>
       </div>
     );
