@@ -54,7 +54,7 @@ class CommentForm extends Component {
       <div className="post-form mb-3">
         <div className="card card-info">
           <div className="card-header bg-info text-white">
-            Make a comment...
+            Fes un comentari...
           </div>
 
           <div className="card-body">
@@ -69,7 +69,7 @@ class CommentForm extends Component {
                 />
               </div>
               <button type="submit" className="btn btn-dark">
-                Submit
+                Envia
               </button>
             </form>
           </div>
