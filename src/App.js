@@ -14,6 +14,7 @@ import setAuthToken from "./utils/setAuthToken";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
+import Test from "./components/layout/Test";
 import Login from "./components/auth/Login";
 import Redux from "./components/posts/Redux";
 import Register from "./components/auth/Register";
@@ -64,6 +65,7 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
+            <Route exact path="/test" component={Test} />
             <Route exact path="/" component={Landing} />
             <div className="container">
               <Route exact path="/register" component={Register} />
