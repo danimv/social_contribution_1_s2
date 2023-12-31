@@ -33,9 +33,9 @@ img {
   }
 
   .col-md-6 {
-    width: 100%; /* Make the columns take full width on small screens */
+    width: 100%; 
     font-size: 140%;
-    margin-bottom: 1.5rem; /* Adjust the margin between columns if needed */
+    margin-bottom: 1.5rem; 
   }
 }
 
