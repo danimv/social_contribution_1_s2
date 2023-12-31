@@ -36,13 +36,13 @@ class Profile extends Component {
           <div className="row">
             <div className="col-md-6">
               <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                Back to all profiles
+                Endarrere
               </Link>
             </div>
             <div className="col-md-6" />
           </div>
           <ProfileHeader profile={profile} />
-          <ProfileAbout profile={profile} />
+          {/* <ProfileAbout profile={profile} /> */}
           {/* <ProfileCreds
             experience={profile.experience}
             education={profile.education}
