@@ -11,7 +11,7 @@ import Transport from '../../../public/uploads/car-front-fill.svg';
 import Map from '../../../public/uploads/geo-alt.svg';
 import profileReducer from '../../reducers/profileReducer';
 import Table from '../layout/Table';
-import ProgressChart from './ProgessChart';
+import ProgressChart from './ProgressChart';
 
 class Stats extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class Stats extends Component {
   render() {
     const { stats } = this.props.stats;
     return (
-      <div className="col-md-12 mt-3 mb-4">        
+      <div className="col-md-12 mt-3 mb-4">
         <div className="table-container">
           <table className="styled-table">
             <thead>
@@ -56,15 +56,14 @@ class Stats extends Component {
                   <tr key={index}>
                     <td>{item.tipus}</td>
                     <td>{item.count}</td>
-                    <td>{item.count}</td>
-                    <hr />
+                    <td>{item.count}</td>                    
                   </tr>
                 ))}
             </tbody>
           </table>
         </div>
         <div>
-          
+          <ProgressChart progress={75} />
         </div>
       </div>
     );
