@@ -21,7 +21,7 @@ img {
   flex-direction: 'column';
   font-size: 1.05rem;
   @media (max-width: 768px) {
-    font-size: 0.85rem; /* Adjust the font size for mobile devices */
+    font-size: 0.95rem; /* Adjust the font size for mobile devices */
   }
 }
 
