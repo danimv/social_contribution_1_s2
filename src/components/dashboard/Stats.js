@@ -44,8 +44,8 @@ class Stats extends Component {
     const { stats } = this.props.stats;
     return (
       <div className="col-md-12 mt-3 mb-4">
-       <div className="row">
-       <div className="col-md-6 mb-3" style={{justifyContent: 'center', alignItems: 'center'}}>
+        <div className="row">
+          <div className="col-md-6 mb-3" style={{ justifyContent: 'center', alignItems: 'center' }}>
             <table className="styled-table">
               <thead>
                 <tr>
@@ -69,7 +69,7 @@ class Stats extends Component {
           <div className="col-md-6 mb-3 mx-auto text-center">
             <p>Regeneració personal</p>
             <div className="mx-auto text-center" style={{ width: '35%' }}>
-            {ProgressChart ? <ProgressChart progress={0.73} /> : null}
+              {ProgressChart ? <ProgressChart progress={0.73} /> : null}
             </div>
           </div>
         </div>
