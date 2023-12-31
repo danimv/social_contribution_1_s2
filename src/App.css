@@ -121,6 +121,7 @@ img {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   @media (max-width: 768px) {
     width: 90%;
+    font-size: 90%;
   }
 }
 
