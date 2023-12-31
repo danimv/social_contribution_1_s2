@@ -90,3 +90,39 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+/*Stats table*/
+.table-container {
+  margin: 20px;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 18px;
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table th {
+  background-color: var(--color_2);
+  opacity: 0.4; 
+  color: white;
+}
+
+.styled-table tbody tr {
+  transition: all 0.3s;
+}
+
+.styled-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+

@@ -17,7 +17,7 @@ class Stats extends Component {
     super(props);
     this.state = {
       icon: '',
-      user: ''
+      user: '',
     };
   }
   componentDidMount() {
@@ -37,18 +37,31 @@ class Stats extends Component {
   }
 
   render() {
-    const {stats} = this.props.stats;
+    const { stats } = this.props.stats;
     return (
-      <div className="col-md-12 mt-3 mb-4 content">
-         <div>
-        {stats && stats.map((item, index) => (
-          <div key={index}>
-            <p>{item.tipus}</p>
-            <p>{item.count}</p>            
-            <hr />
-          </div>
-        ))}
-      </div>
+      <div className="col-md-12 mt-3 mb-4 content">        
+        <div className="table-container">
+          <table className="styled-table">
+            <thead>
+              <tr>
+                <th>Post</th>
+                <th>Número</th>
+                <th>Regeneració</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stats &&
+                stats.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.tipus}</td>
+                    <td>{item.count}</td>
+                    <td>{item.count}</td>
+                    <hr />
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
@@ -62,4 +75,4 @@ Stats.propTypes = {
 const mapStateToProps = (state) => ({
   stats: state.stats,
 });
-export default connect(mapStateToProps, {getStats})(Stats);
+export default connect(mapStateToProps, { getStats })(Stats);
