@@ -17,22 +17,16 @@ class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displaySocialInputs: false,
-      handle: "",
-      imgUrl: "",
-      company: "",
-      website: "",
-      location: "",
-      status: "",
-      skills: "",
-      githubusername: "",
-      bio: "",
-      twitter: "",
-      facebook: "",
-      linkedin: "",
-      youtube: "",
-      instagram: "",
-      errors: {}
+      displaySocialInputs: false,      
+      imgUrl: '',     
+      provincia: '',      
+      bio: '',
+      twitter: '',
+      facebook: '',
+      linkedin: '',
+      youtube: '',
+      instagram: '',
+      errors: {},
     };
 
     this.onChange = this.onChange.bind(this);
@@ -101,21 +95,15 @@ class EditProfile extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const profileData = {
-      handle: this.state.handle,
-      imgUrl: this.state.imgUrl,
-      company: this.state.company,
-      website: this.state.website,
-      location: this.state.location,
-      status: this.state.status,
-      skills: this.state.skills,
-      githubusername: this.state.githubusername,
+    const profileData = {      
+      imgUrl: this.state.imgUrl,      
+      provincia: this.state.provincia,     
       bio: this.state.bio,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
       youtube: this.state.youtube,
-      instagram: this.state.instagram
+      instagram: this.state.instagram,
     };
     this.props.createProfile(profileData, this.props.history);
   }
@@ -176,17 +164,13 @@ class EditProfile extends Component {
 
     const options = [
       {
-        label: "* Select Professional Status",
-        value: 0
+        label: '* Selecciona la teva provincia',
+        value: 0,
       },
-      { label: "Developer", value: "Developer" },
-      { label: "Junior Developer", value: "Junior Developer" },
-      { label: "Senior Developer", value: "Senior Developer" },
-      { label: "Manager", value: "Manager" },
-      { label: "Student", value: "Student" },
-      { label: "Instructor", value: "Instructor" },
-      { label: "Intern", value: "Intern" },
-      { label: "Other", value: "Other" }
+      { label: 'Barcelona', value: 'Barcelona' },
+      { label: 'Girona', value: 'Girona' },
+      { label: 'Lleida', value: 'Lleida' },
+      { label: 'Tarragona', value: 'Tarragona' },
     ];
 
     return (
@@ -194,103 +178,54 @@ class EditProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Edit your profile</h1>
-              <small className="d-block pb-3">* = required fields</small>
+              <h1 className="display-4 text-center">Edita el perfil</h1>
+              <small className="d-block pb-3">* = necessaris</small>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="* Profile Handle"
-                  name="handle"
-                  value={this.state.handle}
-                  onChange={this.onChange}
-                  error={errors.handle}
-                  info="A unique handle for your profile URL"
-                />
-                <TextFieldGroup
-                  placeholder="Profile picture URL"
-                  name="imgUrl"
-                  value={this.state.imgUrl}
-                  onChange={this.onChange}
-                  error={errors.imgUrl}
-                  info="Choose your profile picture!"
-                />
-                <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.status}
-                  info="Where are you in your career?"
-                />
-                <TextFieldGroup
-                  placeholder="Company"
-                  name="company"
-                  value={this.state.company}
-                  onChange={this.onChange}
-                  error={errors.company}
-                  info="Where do you work?"
-                />
-                <TextFieldGroup
-                  placeholder="Website"
-                  name="website"
-                  value={this.state.website}
-                  onChange={this.onChange}
-                  error={errors.website}
-                  info="Your own or company website"
-                />
-                <TextFieldGroup
-                  placeholder="Location"
-                  name="location"
-                  value={this.state.location}
-                  onChange={this.onChange}
-                  error={errors.location}
-                  info="Where do you live? (city, state)"
-                />
-                <TextFieldGroup
-                  placeholder="* Skills"
-                  name="skills"
-                  value={this.state.skills}
-                  onChange={this.onChange}
-                  error={errors.skills}
-                  info="Enter in skills seperated by commas (ex. C, Python, React, etc)"
-                />
-                <TextFieldGroup
-                  placeholder="Github Username"
-                  name="githubusername"
-                  value={this.state.githubusername}
-                  onChange={this.onChange}
-                  error={errors.githubusername}
-                  info="To show off your work!"
-                />
-                <TextAreaFieldGroup
-                  placeholder="Short Bio"
-                  name="bio"
-                  value={this.state.bio}
-                  onChange={this.onChange}
-                  error={errors.bio}
-                  info="Tell us a little about yourself!"
-                />
-
-                <div className="mb-3">
+                <div class="form-group mb-3">
+                  <SelectListGroup
+                    placeholder="Provincia"
+                    name="provincia"
+                    value={this.state.status}
+                    onChange={this.onChange}
+                    options={options}
+                    error={errors.status}
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <TextFieldGroup
+                    placeholder="Foto de perfil"
+                    name="imgUrl"
+                    value={this.state.imgUrl}
+                    onChange={this.onChange}
+                    error={errors.imgUrl}
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <TextAreaFieldGroup
+                    placeholder="Descriu-te una mica"
+                    name="bio"
+                    value={this.state.bio}
+                    onChange={this.onChange}
+                    error={errors.bio}
+                  />
+                </div>
+                <div class="form-group mb-3">
                   <button
                     type="button"
                     className="btn btn-light"
                     onClick={() => {
-                      this.setState(prevState => ({
-                        displaySocialInputs: !prevState.displaySocialInputs
+                      this.setState((prevState) => ({
+                        displaySocialInputs: !prevState.displaySocialInputs,
                       }));
-                    }}
-                  >
-                    Add Social Network Links
+                    }}>
+                    Adjunta les teves xarxes socials
                   </button>
-                  <span className="text-muted">Optional</span>
+                  <span className="text-muted">Opcional</span>
                 </div>
                 {socialInputs}
-                <input
-                  type="submit"
-                  value="submit"
-                  className="btn btn-info btn-block mt-4"
-                />
+                <div className="text-center">
+                  <input type="submit" value="Envia" className="btn btn-info btn-lg btn-block mt-4" />
+                </div>
               </form>
             </div>
           </div>

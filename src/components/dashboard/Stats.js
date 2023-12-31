@@ -17,13 +17,12 @@ class Stats extends Component {
     super(props);
     this.state = {
       icon: '',
-      user: '',
-      stats: '',
+      user: ''
     };
   }
   componentDidMount() {
     const stats = this.props.getStats();
-    this.setState({ stats: stats });
+    // this.setState({ stats: stats });
     console.log(stats);
   }
 
@@ -38,9 +37,18 @@ class Stats extends Component {
   }
 
   render() {
+    const {stats} = this.props.stats;
     return (
       <div className="col-md-12 mt-3 mb-4 content">
-        <p> {this.state.stats && this.state.stats}</p>
+         <div>
+        {stats && stats.map((item, index) => (
+          <div key={index}>
+            <p>{item.tipus}</p>
+            <p>{item.count}</p>            
+            <hr />
+          </div>
+        ))}
+      </div>
       </div>
     );
   }
