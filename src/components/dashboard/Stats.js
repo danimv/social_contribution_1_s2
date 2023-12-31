@@ -45,7 +45,7 @@ class Stats extends Component {
     return (
       <div className="col-md-12 mt-3 mb-4">
        <div className="row">
-       <div className="col-md-6 mb-3">
+       <div className="col-md-6 mb-3" style={{justifyContent: 'center', alignItems: 'center'}}>
             <table className="styled-table">
               <thead>
                 <tr>
