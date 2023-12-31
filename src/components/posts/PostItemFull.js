@@ -64,7 +64,9 @@ class PostItem extends Component {
     const imageUrl = `${serverUrl}${imagePath}`;
     return (
       <div className="col-md-12 mt-3 mb-4 content">
-         <div className="col-md-6 col-sm-12" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '140%' }}>
+        <div
+          className="col-md-6"
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '140%' }}>
           <div>
             <table style={{ borderCollapse: 'separate', borderSpacing: '0 15px' }}>
               <tbody>
@@ -125,7 +127,7 @@ class PostItem extends Component {
             ) : null}
           </div>
         </div>
-        <div className="col-md-6 col-sm-12" style={{ flex: 1 }}>
+        <div className="col-md-6" style={{ flex: 1 }}>
           <div className="card card-body p-2" style={{ opacity: 1 }}>
             <img className="card-img-top" src={imageUrl} />
             <p
