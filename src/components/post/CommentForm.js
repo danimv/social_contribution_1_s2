@@ -61,7 +61,7 @@ class CommentForm extends Component {
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextAreaFieldGroup
-                  placeholder="Reply to post"
+                  placeholder="Escriu el teu comentari"
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange}
