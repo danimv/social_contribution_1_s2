@@ -21,6 +21,7 @@ import Profile from "./components/profile/Profile";
 import Profiles from "./components/profiles/Profiles";
 import Post from "./components/post/Post";
 import Posts from "./components/posts/Posts";
+import Stats from "./components/dashboard/Stats";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/create-profile/CreateProfile";
 import AddExperience from "./components/addCredentials/AddExperience";
@@ -89,15 +90,15 @@ class App extends Component {
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/add-experience"
-                  component={AddExperience}
+                  path="/stats"
+                  component={Stats}
                 />
               </Switch>
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/add-education"
-                  component={AddEducation}
+                  path="/config"
+                  component={Stats}
                 />
               </Switch>
               <Switch>
