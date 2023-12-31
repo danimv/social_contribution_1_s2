@@ -14,16 +14,17 @@ import Table from '../layout/Table';
 
 class Stats extends Component {
   constructor(props) {
-    super(props);    
-    this.state = {      
+    super(props);
+    this.state = {
       icon: '',
-      user:'',
-      stats:''
+      user: '',
+      stats: '',
     };
   }
   componentDidMount() {
-    const { user } = this.props.auth;    
-    this.setState({ stats: this.props.getStats()});    
+    const stats = this.props.getStats();
+    this.setState({ stats: stats });
+    console.log(stats);
   }
 
   iconSelection(tipus) {
@@ -37,26 +38,20 @@ class Stats extends Component {
   }
 
   render() {
-      
     return (
       <div className="col-md-12 mt-3 mb-4 content">
-       <p> {this.state.stats}</p>
+        <p> {this.state.stats && this.state.stats}</p>
       </div>
     );
   }
 }
 
-Stats.defaultProps = {
-  showActions: true,
-};
-
 Stats.propTypes = {
-  auth: PropTypes.object.isRequired,
+  stats: PropTypes.object.isRequired,
   getStats: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  stats: state.stats,
 });
-
-export default connect(mapStateToProps, { getStats })(Stats);
+export default connect(mapStateToProps, {getStats})(Stats);
