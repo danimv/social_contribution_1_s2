@@ -11,6 +11,7 @@ import Transport from '../../../public/uploads/car-front-fill.svg';
 import Map from '../../../public/uploads/geo-alt.svg';
 import profileReducer from '../../reducers/profileReducer';
 import Table from '../layout/Table';
+import ProgressCircle from 
 
 class Stats extends Component {
   constructor(props) {

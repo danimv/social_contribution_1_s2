@@ -126,7 +126,7 @@ class CreateProfile extends Component {
               <h1 className="display-4 text-center">Edita el teu perfil</h1>
               {/* <small className="d-block pb-3">* = required fields</small> */}
               <form onSubmit={this.onSubmit}>
-                <div class="form-group mb-3">
+                <div className="form-group mb-3">
                   <SelectListGroup
                     placeholder="Provincia"
                     name="provincia"
@@ -136,7 +136,7 @@ class CreateProfile extends Component {
                     error={errors.status}
                   />
                 </div>
-                <div class="form-group mb-3">
+                <div className="form-group mb-3">
                   <TextFieldGroup
                     placeholder="Foto de perfil"
                     name="imgUrl"
@@ -145,7 +145,7 @@ class CreateProfile extends Component {
                     error={errors.imgUrl}
                   />
                 </div>
-                <div class="form-group mb-3">
+                <div className="form-group mb-3">
                   <TextAreaFieldGroup
                     placeholder="Descriu-te una mica"
                     name="bio"
@@ -154,7 +154,7 @@ class CreateProfile extends Component {
                     error={errors.bio}
                   />
                 </div>
-                <div class="form-group mb-3">
+                <div className="form-group mb-3">
                   <button
                     type="button"
                     className="btn btn-light"
