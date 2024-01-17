@@ -11,15 +11,19 @@ const ProfileActions = () => {
   return (
     <div>
       <div className="btn-group mb-4" role="group">
-        <a href="edit-profile" className="btn btn-light">
-          <i className="fas fa-user-circle text-info mr-1" /> Editar perfil
-        </a>
-        <button style={{ border: 'none' }} onClick={handleClick}>
-          <i className="fab fa-black-tie text-info mr-1" /> Estadístiques
+        <Link>
+          <button className="btn btn-light" style={{ border: 'none' }}>
+            <i className="fas fa-user-circle text-info mr-1" /> Edita
+          </button>
+        </Link>
+        <button className="btn btn-light" style={{ border: 'none' }} onClick={handleClick}>
+          <i className="fas fa-chart-bar text-info mr-1" /> Estadístiques
         </button>
-        <a className="btn btn-light">
-          <i className="fas fa-graduation-cap text-info mr-1" /> Configuració
-        </a>
+        <Link>
+          <button className="btn btn-light" style={{ border: 'none' }}>
+            <i className="fas fa-cog text-info mr-1" /> Configuració
+          </button>
+        </Link>
       </div>
       <div>{showComponent && <Stats />}</div>
     </div>
