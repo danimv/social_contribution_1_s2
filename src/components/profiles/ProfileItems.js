@@ -9,7 +9,7 @@ class ProfileItems extends Component {
     return (
       <div className="col">
         <div className="card card-body bg-light mb-3">
-          <div className="col-md-12">
+          {/* <div className="col-md-12">
             {profile && isEmpty(profile.imgUrl) ? (
               <img
                 className="rounded-circle"
@@ -19,9 +19,9 @@ class ProfileItems extends Component {
             ) : (
               <img className="rounded-circle" src={profile.imgUrl} alt="" />
             )}
-          </div>
-          <div className="col-lg-6 col-md-4 col-8">
-            <h3>{profile.user && profile.user.name}</h3>            
+          </div> */}
+          <div>
+            <h3>{profile._id && profile.user && profile.user.name}</h3>            
             <p>{isEmpty(profile.location) ? null : <span>{profile.location}</span>}</p>
             <Link to={`/profile/${profile._id}`} className="btn btn-info">
               Veure perfil
