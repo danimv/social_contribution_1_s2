@@ -65,7 +65,7 @@ class Dashboard extends Component {
           <div className="row">
             <div className="col-md-12">{dashboardContent}</div>
             <div style={{ width: 360, height: 640, position: 'relative', background: 'white' }}>
-              <div
+              <button
                 style={{
                   width: 143,
                   height: 144,
@@ -76,7 +76,7 @@ class Dashboard extends Component {
                   borderRadius: 9999,
                 }}
               />
-              <div
+              <button
                 style={{
                   width: 76,
                   height: 76,
@@ -87,7 +87,7 @@ class Dashboard extends Component {
                   borderRadius: 9999,
                 }}
               />
-              <div
+              <button
                 style={{
                   width: 76,
                   height: 76,
@@ -98,7 +98,7 @@ class Dashboard extends Component {
                   borderRadius: 9999,
                 }}
               />
-              <div
+              <button
                 style={{
                   width: 76,
                   height: 76,
