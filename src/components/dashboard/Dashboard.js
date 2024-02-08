@@ -64,6 +64,85 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">{dashboardContent}</div>
+            <div style={{ width: 360, height: 640, position: 'relative', background: 'white' }}>
+              <div
+                style={{
+                  width: 143,
+                  height: 144,
+                  left: 109,
+                  top: 192,
+                  position: 'absolute',
+                  background: '#D9D9D9',
+                  borderRadius: 9999,
+                }}
+              />
+              <div
+                style={{
+                  width: 76,
+                  height: 76,
+                  left: 33,
+                  top: 171,
+                  position: 'absolute',
+                  background: '#D9D9D9',
+                  borderRadius: 9999,
+                }}
+              />
+              <div
+                style={{
+                  width: 76,
+                  height: 76,
+                  left: 33,
+                  top: 291,
+                  position: 'absolute',
+                  background: '#D9D9D9',
+                  borderRadius: 9999,
+                }}
+              />
+              <div
+                style={{
+                  width: 76,
+                  height: 76,
+                  left: 142,
+                  top: 349,
+                  position: 'absolute',
+                  background: '#D9D9D9',
+                  borderRadius: 9999,
+                }}
+              />
+              <div
+                style={{
+                  width: 76,
+                  height: 76,
+                  left: 251,
+                  top: 291,
+                  position: 'absolute',
+                  background: '#D9D9D9',
+                  borderRadius: 9999,
+                }}
+              />
+              <div
+                style={{
+                  width: 76,
+                  height: 76,
+                  left: 251,
+                  top: 171,
+                  position: 'absolute',
+                  background: '#D9D9D9',
+                  borderRadius: 9999,
+                }}
+              />
+              <div
+                style={{
+                  width: 76,
+                  height: 76,
+                  left: 142,
+                  top: 103,
+                  position: 'absolute',
+                  background: '#D9D9D9',
+                  borderRadius: 9999,
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
