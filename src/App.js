@@ -12,6 +12,7 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 
 import Navbar from "./components/layout/Navbar";
+import PostForm from "./components/posts/PostFormUnic";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Test from "./components/layout/Test";
@@ -74,6 +75,9 @@ class App extends Component {
               <Route exact path="/profile/:id" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/form" component={PostForm} />
               </Switch>
               <Switch>
                 <PrivateRoute

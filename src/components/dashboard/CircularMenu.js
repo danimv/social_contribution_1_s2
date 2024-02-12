@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
 import ProfileActions from './ProfileActions';
@@ -23,13 +23,16 @@ class CircularMenu extends Component {
     const spaceBetween = -20;
     const texts = ['Casa', 'Persona', 'Mobilitat', 'Territori', 'Personal', 'Social'];
     const colors = ['#c8d5ff', '#8bb1b3', '#8c9eb3', '#107d81', '#8bb38d', '#8ffbff'];
+    const links = ['/form', '/form', '/form', '/form', '/form', '/form']; // Update with your desired paths
+
+
 
     return (
       <div
         style={{
           height: '100vh',
           marginTop: '-11%',
-          marginBottom: '-10%',
+          marginBottom: '-8%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -54,8 +57,10 @@ class CircularMenu extends Component {
             const smallCircleY = y + (bigCircleRadius + spaceBetween) * Math.sin(angle * (Math.PI / 180));
 
             return (
-              <button
+              <NavLink
                 key={index}
+                to={links[index]}
+            className="nav-link nav_link"
                 style={{
                   position: 'absolute',
                   color: 'white',
@@ -70,6 +75,10 @@ class CircularMenu extends Component {
                   maxWidth: '200px',
                   maxHeight: '200px',
                   borderWidth: '0px',
+                  display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textDecoration: 'none',
                   cursor: 'pointer',
                   transition: 'transform 0.2s',
                 }}
@@ -80,7 +89,7 @@ class CircularMenu extends Component {
                   e.target.style.transform = 'translate(-50%, -50%) scale(1)';
                 }}>
                 {texts[index]}
-              </button>
+              </NavLink>
             );
           })}
         </div>
