@@ -41,14 +41,14 @@ class CreateProfile extends Component {
     e.preventDefault();
 
     const profileData = {      
-      imgUrl: this.state.imgUrl,      
+      // imgUrl: this.state.imgUrl,      
       provincia: this.state.provincia,     
-      bio: this.state.bio,
-      twitter: this.state.twitter,
-      facebook: this.state.facebook,
-      linkedin: this.state.linkedin,
-      youtube: this.state.youtube,
-      instagram: this.state.instagram,
+      // bio: this.state.bio,
+      // twitter: this.state.twitter,
+      // facebook: this.state.facebook,
+      // linkedin: this.state.linkedin,
+      // youtube: this.state.youtube,
+      // instagram: this.state.instagram,
     };
     this.props.createProfile(profileData, this.props.history);
   }

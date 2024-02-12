@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import PostForm from './PostForm';
+import CircularMenu from '../dashboard/CircularMenu';
 import PostFeed from './PostFeed';
 
 import Spinner from '../common/Spinner';
@@ -25,12 +26,18 @@ class Posts extends Component {
       postContent = <PostFeed posts={posts} />;
     }
     return (
-      <div className="feed no-gutters" >
-        <div className="container no-gutters">
-          <div className="row no-gutters">
-            <div className="col-md-12 no-gutters">
-              <PostForm />
-              <div className="row row-cols-md-2 g-3 mt-4"  style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row' }}>{postContent}</div>
+      <div>
+        <CircularMenu />
+        <div className="feed no-gutters">
+          <div className="container no-gutters">
+            <div className="row no-gutters">
+              <div className="col-md-12 no-gutters">
+                <div
+                  className="row row-cols-md-2 g-3"
+                  style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row' }}>
+                  {postContent}
+                </div>
+              </div>
             </div>
           </div>
         </div>
